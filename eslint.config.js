@@ -1,5 +1,7 @@
 import js from "@eslint/js";
+import prettier from "eslint-config-prettier";
 import importPlugin from "eslint-plugin-import";
+import prettierPlugin from "eslint-plugin-prettier";
 import reactHooks from "eslint-plugin-react-hooks";
 import reactRefresh from "eslint-plugin-react-refresh";
 import globals from "globals";
@@ -22,6 +24,7 @@ export default [
       "react-hooks": reactHooks,
       "react-refresh": reactRefresh,
       import: importPlugin,
+      prettier: prettierPlugin,
     },
     rules: {
       ...js.configs.recommended.rules,
@@ -56,6 +59,8 @@ export default [
           },
         },
       ],
+      "prettier/prettier": "error",
     },
   },
+  prettier,
 ];
