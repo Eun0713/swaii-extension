@@ -15,4 +15,19 @@ export default defineConfig({
       "@": path.resolve(__dirname, "./src"),
     },
   },
+  build: {
+    outDir: "dist",
+    emptyOutDir: true,
+    rollupOptions: {
+      input: {
+        options: path.resolve(__dirname, "src/options.html"),
+        background: path.resolve(__dirname, "src/background.js"),
+        content: path.resolve(__dirname, "src/content.js"),
+      },
+      output: {
+        entryFileNames: "[name].js",
+        assetFileNames: "[name][extname]",
+      },
+    },
+  },
 });
