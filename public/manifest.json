@@ -4,7 +4,7 @@
   "version": "1.0.0",
   "description": "마우스 제스처만으로 웹을 제어하는, 개인화된 브라우징 자동화 도구",
   "icons": {
-  "128": "icon-128.png"
+    "128": "icon-128.png"
   },
   "permissions": ["storage", "activeTab"],
   "host_permissions": [
@@ -14,17 +14,17 @@
     "https://www.google.com/*"
   ],
   "background": {
-    "service_worker": "src/background.js"
+    "service_worker": "background.js"
   },
   "content_scripts": [
     {
       "matches": ["<all_urls>"],
-      "js": ["src/content.js"],
+      "js": ["content.js"],
       "run_at": "document_idle"
     }
   ],
-  "options_page": "src/options.html",
   "action": {
-    "default_title": "Swaii"
+    "default_title": "Swaii",
+    "default_popup": "popup.html"
   }
 }
