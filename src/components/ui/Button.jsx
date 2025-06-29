@@ -17,8 +17,8 @@ const Button = ({
   };
 
   const sizes = {
-    sm: "text-sm px-5 py-1",
-    md: "text-base px-5 py-2",
+    sm: "text-base px-5 py-1",
+    md: "text-lg px-6 py-1",
   };
 
   return (
