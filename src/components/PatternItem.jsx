@@ -1,6 +1,10 @@
+import { useNavigate } from "react-router-dom";
+
 import Button from "@/components/ui/Button";
 
 const PatternItem = ({ SiteIcon, GestureIcon, title, description }) => {
+  const navigate = useNavigate();
+
   return (
     <div className="relative flex h-20 items-center justify-between rounded-xl bg-[#2F2F38] px-5 py-3">
       <div className="flex items-center gap-4">
@@ -18,7 +22,9 @@ const PatternItem = ({ SiteIcon, GestureIcon, title, description }) => {
       </div>
 
       <div className="flex gap-2">
-        <Button variant="muted">수정</Button>
+        <Button variant="muted" onClick={() => navigate("/settings/edit")}>
+          수정
+        </Button>
         <Button variant="danger">삭제</Button>
       </div>
     </div>
