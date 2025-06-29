@@ -1,27 +1,20 @@
-import { createBrowserRouter } from "react-router-dom";
+import React from "react";
+import { Routes, Route } from "react-router-dom";
 
 import AddPattern from "@/pages/AddPattern";
 import CustomGesture from "@/pages/CustomGesture";
 import EntryPoint from "@/pages/EntryPoint";
 import Settings from "@/pages/Settings";
 
-const router = createBrowserRouter([
-  {
-    path: "/",
-    element: <EntryPoint />,
-  },
-  {
-    path: "/settings",
-    element: <Settings />,
-  },
-  {
-    path: "/settings/add",
-    element: <AddPattern />,
-  },
-  {
-    path: "/settings/custom",
-    element: <CustomGesture />,
-  },
-]);
+const Router = () => {
+  return (
+    <Routes>
+      <Route path="/" element={<EntryPoint />} />
+      <Route path="/settings" element={<Settings />} />
+      <Route path="/settings/add" element={<AddPattern />} />
+      <Route path="/settings/custom" element={<CustomGesture />} />
+    </Routes>
+  );
+};
 
-export default router;
+export default Router;
