@@ -20,6 +20,7 @@ const PatternForm = ({
 
   const navigate = useNavigate();
 
+  const toggle = (key) => setOpenDropdown(openDropdown === key ? null : key);
   const handleSubmit = (e) => {
     e.preventDefault();
     onSubmit({ site, gesture, action });
@@ -33,9 +34,7 @@ const PatternForm = ({
           value={site}
           onChange={setSite}
           isOpen={openDropdown === "site"}
-          onToggle={() =>
-            setOpenDropdown(openDropdown === "site" ? null : "site")
-          }
+          onToggle={() => toggle("site")}
         />
       </div>
 
@@ -45,9 +44,7 @@ const PatternForm = ({
           value={gesture}
           onChange={setGesture}
           isOpen={openDropdown === "gesture"}
-          onToggle={() =>
-            setOpenDropdown(openDropdown === "gesture" ? null : "gesture")
-          }
+          onToggle={() => toggle("gesture")}
         />
       </div>
 
@@ -57,9 +54,7 @@ const PatternForm = ({
           value={action}
           onChange={setAction}
           isOpen={openDropdown === "action"}
-          onToggle={() =>
-            setOpenDropdown(openDropdown === "action" ? null : "action")
-          }
+          onToggle={() => toggle("action")}
         />
       </div>
 
