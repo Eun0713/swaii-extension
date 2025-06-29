@@ -3,6 +3,7 @@ import { Routes, Route } from "react-router-dom";
 
 import AddPattern from "@/pages/AddPattern";
 import CustomGesture from "@/pages/CustomGesture";
+import EditPattern from "@/pages/EditPattern";
 import EntryPoint from "@/pages/EntryPoint";
 import Settings from "@/pages/Settings";
 
@@ -12,6 +13,7 @@ const Router = () => {
       <Route path="/" element={<EntryPoint />} />
       <Route path="/settings" element={<Settings />} />
       <Route path="/settings/add" element={<AddPattern />} />
+      <Route path="/settings/edit" element={<EditPattern />} />
       <Route path="/settings/custom" element={<CustomGesture />} />
     </Routes>
   );
