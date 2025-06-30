@@ -2,42 +2,28 @@ import { useNavigate } from "react-router-dom";
 
 import CloseButton from "@/assets/icons/icon-close.svg?react";
 import Button from "@/components/common/Button";
+import HeaderLayout from "@/components/common/HeaderLayout";
 import PatternList from "@/components/pattern/PatternList";
 
 const Settings = () => {
   const navigate = useNavigate();
 
-  const handleClose = () => {
-    window.close();
-  };
-
   return (
-    <div className="relative h-[480px] w-[640px] bg-slate-900 p-5 text-white shadow-lg">
-      <button
-        onClick={handleClose}
-        className="absolute right-6 top-6 h-5 w-5 cursor-pointer"
-      >
-        <CloseButton />
-      </button>
-
-      <div className="mt-4 text-3xl font-bold">패턴 설정</div>
-      <p className="mt-2 text-lg text-gray-300">
-        사이트별로 연결된 마우스 패턴을 확인하고 관리할 수 있습니다.
-      </p>
-
+    <HeaderLayout
+      title="패턴 설정"
+      description={`  사이트별로 연결된 마우스 패턴을 확인하고 관리할 수 있습니다.`}
+    >
       <div className="mt-6">
         <PatternList />
       </div>
 
       <div
-        className="absolute bottom-5 right-10"
+        className="absolute bottom-7 right-9"
         onClick={() => navigate("/settings/add")}
       >
-        <Button variant="primary" size="md">
-          + 패턴 추가
-        </Button>
+        <Button variant="primary">+ 패턴 추가</Button>
       </div>
-    </div>
+    </HeaderLayout>
   );
 };
 
