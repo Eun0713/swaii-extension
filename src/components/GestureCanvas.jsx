@@ -1,6 +1,6 @@
 import { useRef, useEffect, useState } from "react";
 
-const GestureCanvas = ({ onPathChange }) => {
+const GestureCanvas = ({ onPathChange, isDisabled }) => {
   const canvasRef = useRef(null);
   const [drawing, setDrawing] = useState(false);
   const [path, setPath] = useState([]);
@@ -18,6 +18,8 @@ const GestureCanvas = ({ onPathChange }) => {
   };
 
   const startDrawing = (e) => {
+    if (isDisabled) return;
+
     const ctx = canvasRef.current?.getContext("2d");
     if (!ctx) return;
 

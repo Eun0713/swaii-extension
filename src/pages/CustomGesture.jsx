@@ -56,7 +56,7 @@ const CustomGesture = () => {
       />
 
       <div className="mt-4 flex flex-col gap-3">
-        <GestureCanvas onPathChange={setPath} />
+        <GestureCanvas onPathChange={setPath} isDisabled={path.length > 0} />
         <GestureInput value={name} onChange={setName} />
         <div className="flex justify-end">
           <GestureButtons onSave={handleSave} onCancel={handleCancel} />
