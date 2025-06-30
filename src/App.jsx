@@ -1,9 +1,14 @@
-import { RouterProvider } from "react-router-dom";
+import { useEffect } from "react";
 
-import router from "@/Router";
+import Router from "@/Router";
+import { initDefaultGestures } from "@/utils/gestureStorage";
 
 function App() {
-  return <RouterProvider router={router} />;
+  useEffect(() => {
+    initDefaultGestures();
+  }, []);
+
+  return <Router />;
 }
 
 export default App;
