@@ -1,4 +1,4 @@
-import WarningIcon from "@/assets/icon-warning.svg?react";
+import WarningIcon from "@/assets/icons/icon-warning.svg?react";
 import Button from "@/components/ui/Button";
 
 const DeleteConfirmModal = ({ title, description, onCancel, onConfirm }) => {

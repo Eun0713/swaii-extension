@@ -1,4 +1,4 @@
-import IconDropdownArrow from "@/assets/icon-dropdown-arrow.svg?react";
+import IconDropdownArrow from "@/assets/icons/icon-dropdown-arrow.svg?react";
 
 const GenericDropdown = ({
   isOpen,

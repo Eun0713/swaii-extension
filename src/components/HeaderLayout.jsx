@@ -1,4 +1,4 @@
-import CloseButton from "@/assets/icon-close.svg?react";
+import CloseButton from "@/assets/icons/icon-close.svg?react";
 
 const HeaderLayout = ({ title, description, children }) => {
   const handleClose = () => {

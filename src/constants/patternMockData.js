@@ -1,10 +1,10 @@
-import GestureCircleIcon from "@/assets/gesture-circle.svg?react";
-import GestureInfinityIcon from "@/assets/gesture-infinity.svg?react";
-import GestureLineIcon from "@/assets/gesture-line.svg?react";
-import FigmaPatternIcon from "@/assets/icon-figma-pattern.svg?react";
-import GooglePatternIcon from "@/assets/icon-google-pattern.svg?react";
-import NotionPatternIcon from "@/assets/icon-notion-pattern.svg?react";
-import YoutubePatternIcon from "@/assets/icon-youtube-pattern.svg?react";
+import GestureCircleIcon from "@/assets/gestures/gesture-circle.svg?react";
+import GestureInfinityIcon from "@/assets/gestures/gesture-infinity.svg?react";
+import GestureLineIcon from "@/assets/gestures/gesture-line.svg?react";
+import FigmaPatternIcon from "@/assets/patterns/icon-figma-pattern.svg?react";
+import GooglePatternIcon from "@/assets/patterns/icon-google-pattern.svg?react";
+import NotionPatternIcon from "@/assets/patterns/icon-notion-pattern.svg?react";
+import YoutubePatternIcon from "@/assets/patterns/icon-youtube-pattern.svg?react";
 
 export const mockPatterns = [
   {

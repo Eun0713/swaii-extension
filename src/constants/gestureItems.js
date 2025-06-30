@@ -1,6 +1,6 @@
-import IconGoogle from "@/assets/icon-google.svg";
-import IconNotion from "@/assets/icon-notion.svg";
-import IconYoutube from "@/assets/icon-youtube.svg";
+import IconGoogle from "@/assets/logos/icon-google.svg";
+import IconNotion from "@/assets/logos/icon-notion.svg";
+import IconYoutube from "@/assets/logos/icon-youtube.svg";
 
 export const gestureItems = [
   {

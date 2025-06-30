@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-import IconPlus from "@/assets/icon-plus.svg?react";
+import IconPlus from "@/assets/icons/icon-plus.svg?react";
 import ActionDropdown from "@/components/dropdowns/ActionDropdown";
 import GestureDropdown from "@/components/dropdowns/GestureDropdown";
 import SiteDropdown from "@/components/dropdowns/SiteDropdown";

@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 
-import GestureCircleCursor from "@/assets/circle-gesture.svg";
-import LogoSwaii from "@/assets/logo-swaii.svg?react";
+import GestureCircleCursor from "@/assets/gestures/circle-gesture.svg";
+import LogoSwaii from "@/assets/logos/logo-swaii.svg?react";
 import { gestureItems } from "@/constants/gestureItems";
 
 const EntryPoint = () => {
