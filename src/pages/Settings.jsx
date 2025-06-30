@@ -1,6 +1,5 @@
 import { useNavigate } from "react-router-dom";
 
-import CloseButton from "@/assets/icons/icon-close.svg?react";
 import Button from "@/components/common/Button";
 import HeaderLayout from "@/components/common/HeaderLayout";
 import PatternList from "@/components/pattern/PatternList";
