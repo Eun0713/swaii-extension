@@ -8,6 +8,22 @@ const PatternItem = ({ SiteIcon, GestureIcon, title, description }) => {
   const navigate = useNavigate();
   const [isModalOpen, setIsModalOpen] = useState(false);
 
+  const handleOpenModal = () => setIsModalOpen(true);
+  const handleCloseModal = () => setIsModalOpen(false);
+  const handleDeleteConfirm = () => {
+    // TODO: 실제 삭제 처리 로직 연결
+    handleCloseModal();
+  };
+
+  const renderDeleteModal = () => (
+    <DeleteConfirmModal
+      title="이 패턴을 삭제하시겠습니까?"
+      description={`${title}에 연결된 ${description} 기능이 삭제됩니다.`}
+      onCancel={handleCloseModal}
+      onConfirm={handleDeleteConfirm}
+    />
+  );
+
   return (
     <>
       <div className="relative flex h-20 items-center justify-between rounded-xl bg-[#2F2F38] px-5 py-3">
@@ -29,22 +45,13 @@ const PatternItem = ({ SiteIcon, GestureIcon, title, description }) => {
           <Button variant="muted" onClick={() => navigate("/settings/edit")}>
             수정
           </Button>
-          <Button variant="neutralDanger" onClick={() => setIsModalOpen(true)}>
+          <Button variant="neutralDanger" onClick={handleOpenModal}>
             삭제
           </Button>
         </div>
       </div>
 
-      {isModalOpen && (
-        <DeleteConfirmModal
-          title="이 패턴을 삭제하시겠습니까?"
-          description={`${title}에 연결된 ${description} 기능이 삭제됩니다.`}
-          onCancel={() => setIsModalOpen(false)}
-          onConfirm={() => {
-            setIsModalOpen(false);
-          }}
-        />
-      )}
+      {isModalOpen && renderDeleteModal()}
     </>
   );
 };
