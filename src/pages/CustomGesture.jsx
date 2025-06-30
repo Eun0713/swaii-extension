@@ -49,7 +49,7 @@ const CustomGesture = () => {
   return (
     <HeaderLayout
       title="커스텀 제스처 만들기"
-      description={`직접 마우스로 궤적을 그려 원하는 이름을 붙여보세요.\n등록된 제스처는 '패턴 선택' 드롭다운에서 사용할 수 있습니다.`}
+      description={`직접 마우스로 궤적을 그리고 원하는 이름을 붙여보세요.\n등록된 제스처는 '패턴 선택' 드롭다운에서 사용할 수 있습니다.`}
     >
       <AlertMessage message={message} type={type} visible={visible} />
 
