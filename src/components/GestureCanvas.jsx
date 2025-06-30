@@ -42,7 +42,7 @@ const GestureCanvas = ({ onPathChange, isDisabled }) => {
     setDrawing(true);
   };
 
-  const draw = (e) => {
+  const drawPath = (e) => {
     if (!drawing) return;
 
     const ctx = getContext();
@@ -75,7 +75,7 @@ const GestureCanvas = ({ onPathChange, isDisabled }) => {
         height={200}
         className="rounded border border-gray-600 bg-black"
         onMouseDown={startDrawing}
-        onMouseMove={draw}
+        onMouseMove={drawPath}
         onMouseUp={endDrawing}
       />
       <button
