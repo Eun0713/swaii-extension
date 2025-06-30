@@ -18,6 +18,8 @@ const CustomGesture = () => {
     visible: false,
   });
 
+  const { message, type, visible } = alert;
+
   const showAlert = (message, type = "error") => {
     setAlert({ message, type, visible: true });
     setTimeout(() => setAlert((prev) => ({ ...prev, visible: false })), 2000);
@@ -49,11 +51,7 @@ const CustomGesture = () => {
       title="커스텀 제스처 만들기"
       description={`직접 마우스로 궤적을 그려 원하는 이름을 붙여보세요.\n등록된 제스처는 '패턴 선택' 드롭다운에서 사용할 수 있습니다.`}
     >
-      <AlertMessage
-        message={alert.message}
-        type={alert.type}
-        visible={alert.visible}
-      />
+      <AlertMessage message={message} type={type} visible={visible} />
 
       <div className="mt-4 flex flex-col gap-3">
         <GestureCanvas onPathChange={setPath} isDisabled={path.length > 0} />
