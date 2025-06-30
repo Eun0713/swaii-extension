@@ -28,7 +28,7 @@ const PatternForm = ({
 
   return (
     <form onSubmit={handleSubmit}>
-      <div className="mt-4">
+      <div className="mt-5">
         <label className="mb-1 block text-sm text-white">사이트 선택</label>
         <SiteDropdown
           value={site}
@@ -71,7 +71,7 @@ const PatternForm = ({
         </div>
       )}
 
-      <div className="absolute bottom-0 left-0 flex w-full justify-end gap-2 px-6 pb-6">
+      <div className="absolute bottom-0 left-0 flex w-full justify-end gap-2 px-5 pb-5">
         <Button variant="default" onClick={onCancel} type="button">
           취소
         </Button>
