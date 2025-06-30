@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-import Button from "@/components/ui/Button";
-import DeleteConfirmModal from "@/components/ui/DeleteConfirmModal";
+import Button from "@/components/common/Button";
+import DeleteConfirmModal from "@/components/common/DeleteConfirmModal";
 
 const PatternItem = ({ SiteIcon, GestureIcon, title, description }) => {
   const navigate = useNavigate();

@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 
-import HeaderLayout from "@/components/HeaderLayout";
-import PatternForm from "@/components/PatternForm";
+import HeaderLayout from "@/components/common/HeaderLayout";
+import PatternForm from "@/components/pattern/PatternForm";
 
 const EditPattern = () => {
   const navigate = useNavigate();

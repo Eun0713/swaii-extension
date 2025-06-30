@@ -2,10 +2,10 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 import IconPlus from "@/assets/icons/icon-plus.svg?react";
+import Button from "@/components/common/Button";
 import ActionDropdown from "@/components/dropdowns/ActionDropdown";
 import GestureDropdown from "@/components/dropdowns/GestureDropdown";
 import SiteDropdown from "@/components/dropdowns/SiteDropdown";
-import Button from "@/components/ui/Button";
 
 const PatternForm = ({
   initialData = {},

@@ -1,11 +1,11 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-import GestureButtons from "@/components/GestureButtons";
-import GestureCanvas from "@/components/GestureCanvas";
-import GestureInput from "@/components/GestureInput";
-import HeaderLayout from "@/components/HeaderLayout";
-import AlertMessage from "@/components/ui/AlertMessage";
+import AlertMessage from "@/components/common/AlertMessage";
+import HeaderLayout from "@/components/common/HeaderLayout";
+import GestureButtons from "@/components/gesture/GestureButtons";
+import GestureCanvas from "@/components/gesture/GestureCanvas";
+import GestureInput from "@/components/gesture/GestureInput";
 
 const CustomGesture = () => {
   const navigate = useNavigate();

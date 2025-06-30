@@ -1,4 +1,4 @@
-import PatternItem from "@/components/PatternItem";
+import PatternItem from "@/components/pattern/PatternItem";
 import { mockPatterns } from "@/constants/patternMockData";
 
 const PatternList = () => {
