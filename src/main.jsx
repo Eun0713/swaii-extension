@@ -2,12 +2,12 @@ import React from "react";
 import { createRoot } from "react-dom/client";
 import { HashRouter } from "react-router-dom";
 
-import Router from "@/Router";
+import App from "@/App";
 import "@/index.css";
 
 const root = createRoot(document.getElementById("root"));
 root.render(
   <HashRouter>
-    <Router />
+    <App />
   </HashRouter>
 );
