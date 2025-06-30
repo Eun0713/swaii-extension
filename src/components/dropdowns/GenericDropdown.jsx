@@ -21,7 +21,7 @@ const GenericDropdown = ({
       </button>
 
       {isOpen && (
-        <ul className="absolute z-10 mt-1 w-full rounded-md bg-[#2F2F38]">
+        <ul className="scrollbar-hide absolute z-10 mt-1 max-h-24 w-full overflow-auto rounded-md bg-[#2F2F38]">
           {items.map((item) => (
             <li
               key={item}
