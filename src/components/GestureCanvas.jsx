@@ -9,6 +9,10 @@ const GestureCanvas = ({ onPathChange, isDisabled }) => {
     onPathChange(path);
   }, [path, onPathChange]);
 
+  const getContext = () => {
+    return canvasRef.current?.getContext("2d");
+  };
+
   const getMousePos = (e) => {
     const rect = canvasRef.current.getBoundingClientRect();
     return {
@@ -20,7 +24,7 @@ const GestureCanvas = ({ onPathChange, isDisabled }) => {
   const startDrawing = (e) => {
     if (isDisabled) return;
 
-    const ctx = canvasRef.current?.getContext("2d");
+    const ctx = getContext();
     if (!ctx) return;
 
     const pos = getMousePos(e);
@@ -41,7 +45,7 @@ const GestureCanvas = ({ onPathChange, isDisabled }) => {
   const draw = (e) => {
     if (!drawing) return;
 
-    const ctx = canvasRef.current?.getContext("2d");
+    const ctx = getContext();
     if (!ctx) return;
 
     const pos = getMousePos(e);
@@ -56,7 +60,7 @@ const GestureCanvas = ({ onPathChange, isDisabled }) => {
   };
 
   const clearCanvas = () => {
-    const ctx = canvasRef.current?.getContext("2d");
+    const ctx = getContext();
     if (!ctx) return;
 
     ctx.clearRect(0, 0, canvasRef.current.width, canvasRef.current.height);
