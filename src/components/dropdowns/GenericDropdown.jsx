@@ -12,7 +12,7 @@ const GenericDropdown = ({
     <div className="relative w-full">
       <button
         onClick={onToggle}
-        className="flex w-full items-center justify-between rounded-md bg-[#2F2F38] px-4 py-2 text-left text-white"
+        className="flex w-full items-center justify-between rounded-md bg-[#2F2F38] px-4 py-2 text-left text-base text-white"
       >
         {value || label}
         <IconDropdownArrow
@@ -25,7 +25,7 @@ const GenericDropdown = ({
           {items.map((item) => (
             <li
               key={item}
-              className="cursor-pointer px-4 py-2 text-white"
+              className="cursor-pointer px-4 py-2 text-base text-white"
               onClick={() => {
                 onChange(item);
                 onToggle();
