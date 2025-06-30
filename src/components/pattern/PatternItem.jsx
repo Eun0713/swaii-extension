@@ -42,10 +42,14 @@ const PatternItem = ({ SiteIcon, GestureIcon, title, description }) => {
         </div>
 
         <div className="flex gap-2">
-          <Button variant="muted" onClick={() => navigate("/settings/edit")}>
+          <Button
+            variant="muted"
+            onClick={() => navigate("/settings/edit")}
+            size="sm"
+          >
             수정
           </Button>
-          <Button variant="neutralDanger" onClick={handleOpenModal}>
+          <Button variant="neutralDanger" onClick={handleOpenModal} size="sm">
             삭제
           </Button>
         </div>
