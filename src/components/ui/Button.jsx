@@ -2,7 +2,7 @@ const Button = ({
   children,
   onClick,
   variant = "default",
-  size = "sm",
+  size = "md",
   className = "",
   type = "button",
   ...props
@@ -12,13 +12,14 @@ const Button = ({
   const variants = {
     default: "bg-white text-black border border-gray-300",
     primary: "bg-indigo-600 text-white",
-    danger: "bg-zinc-600 text-white",
+    danger: "bg-red-500 text-white",
+    neutralDanger: "bg-zinc-600 text-white",
     muted: "bg-slate-900 text-white",
   };
 
   const sizes = {
-    sm: "text-base px-5 py-1",
-    md: "text-lg px-6 py-1",
+    sm: "text-sm px-3 py-1",
+    md: "text-base px-4 py-1",
   };
 
   return (
