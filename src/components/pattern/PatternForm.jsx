@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 import IconPlus from "@/assets/icons/icon-plus.svg?react";
+import AlertMessage from "@/components/common/AlertMessage";
 import Button from "@/components/common/Button";
 import ActionDropdown from "@/components/dropdowns/ActionDropdown";
 import GestureDropdown from "@/components/dropdowns/GestureDropdown";
@@ -17,17 +18,37 @@ const PatternForm = ({
   const [gesture, setGesture] = useState(initialData.gesture || "");
   const [action, setAction] = useState(initialData.action || "");
   const [openDropdown, setOpenDropdown] = useState(null);
+  const [showErrorAlert, setShowErrorAlert] = useState(false);
 
   const navigate = useNavigate();
 
   const toggle = (key) => setOpenDropdown(openDropdown === key ? null : key);
+
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    if (!site || !gesture || !action) {
+      setShowErrorAlert(true);
+
+      setTimeout(() => {
+        setShowErrorAlert(false);
+      }, 1500);
+
+      return;
+    }
+
+    setShowErrorAlert(false);
     onSubmit({ site, gesture, action });
   };
 
   return (
     <form onSubmit={handleSubmit}>
+      <AlertMessage
+        message="사이트, 패턴, 기능을 모두 선택해 주세요."
+        type="error"
+        visible={showErrorAlert}
+      />
+
       <div className="mt-5">
         <label className="mb-1 block text-sm text-white">사이트 선택</label>
         <SiteDropdown
