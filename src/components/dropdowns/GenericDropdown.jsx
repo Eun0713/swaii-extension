@@ -1,4 +1,5 @@
 import IconDropdownArrow from "@/assets/icons/icon-dropdown-arrow.svg?react";
+import { gestureStore } from "@/utils/gestureStorage";
 
 const GenericDropdown = ({
   isOpen,
@@ -8,6 +9,14 @@ const GenericDropdown = ({
   items,
   label,
 }) => {
+  const dropdownItems =
+    items === "gesture"
+      ? gestureStore
+          .getAll()
+          .filter((gesture) => gesture.type === "default")
+          .map((gesture) => gesture.name)
+      : items;
+
   return (
     <div className="relative w-full">
       <button
@@ -23,7 +32,7 @@ const GenericDropdown = ({
 
       {isOpen && (
         <ul className="scrollbar-hide absolute z-10 mt-1 max-h-24 w-full overflow-auto rounded-md bg-[#2F2F38]">
-          {items.map((item) => (
+          {dropdownItems.map((item) => (
             <li
               key={item}
               className="cursor-pointer px-4 py-2 text-base text-white"
