@@ -35,9 +35,9 @@ const PatternItem = ({
 
   return (
     <>
-      <div className="relative flex h-20 items-center justify-between rounded-xl bg-[#2F2F38] px-5 py-3">
+      <div className="relative flex h-16 items-center justify-between rounded-xl bg-[#2F2F38] px-5 py-3">
         <div className="flex items-center gap-4">
-          {SiteIcon && <SiteIcon className="h-8 w-8" />}
+          {SiteIcon && <SiteIcon className="h-10 w-10" />}
           <div className="flex flex-col">
             <div className="text-sm font-semibold text-white">{title}</div>
             <div className="text-xs text-gray-300">{description}</div>
@@ -45,8 +45,8 @@ const PatternItem = ({
         </div>
 
         <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
-          <div className="flex h-6 w-6 items-center justify-center">
-            {GestureIcon && <GestureIcon className="h-6 w-6" />}
+          <div className="flex items-center justify-center">
+            {GestureIcon && <GestureIcon className="h-7 w-7" />}
           </div>
         </div>
 
