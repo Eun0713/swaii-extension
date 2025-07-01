@@ -22,22 +22,24 @@ const PatternForm = ({
 
   const navigate = useNavigate();
 
+  const showTemporaryError = () => {
+    setShowErrorAlert(true);
+
+    setTimeout(() => {
+      setShowErrorAlert(false);
+    }, 1500);
+  };
+
   const toggle = (key) => setOpenDropdown(openDropdown === key ? null : key);
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
     if (!site || !gesture || !action) {
-      setShowErrorAlert(true);
-
-      setTimeout(() => {
-        setShowErrorAlert(false);
-      }, 1500);
-
+      showTemporaryError();
       return;
     }
 
-    setShowErrorAlert(false);
     onSubmit({ site, gesture, action });
   };
 
