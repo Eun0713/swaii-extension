@@ -3,15 +3,24 @@ import { useNavigate } from "react-router-dom";
 
 import Button from "@/components/common/Button";
 import DeleteConfirmModal from "@/components/common/DeleteConfirmModal";
+import gestureMappingStorage from "@/utils/gestureMappingStorage";
 
-const PatternItem = ({ SiteIcon, GestureIcon, title, description }) => {
+const PatternItem = ({
+  SiteIcon,
+  GestureIcon,
+  title,
+  description,
+  mapping,
+  onDelete,
+}) => {
   const navigate = useNavigate();
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const handleOpenModal = () => setIsModalOpen(true);
   const handleCloseModal = () => setIsModalOpen(false);
   const handleDeleteConfirm = () => {
-    // TODO: 실제 삭제 처리 로직 연결
+    gestureMappingStorage.remove(mapping);
+    onDelete();
     handleCloseModal();
   };
 
