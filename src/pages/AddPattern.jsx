@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import AlertMessage from "@/components/common/AlertMessage";
 import HeaderLayout from "@/components/common/HeaderLayout";
 import PatternForm from "@/components/pattern/PatternForm";
-import { saveMapping } from "@/utils/gestureMappingStorage";
+import gestureMappingStorage from "@/utils/gestureMappingStorage";
 
 const AddPattern = () => {
   const navigate = useNavigate();
@@ -17,7 +17,7 @@ const AddPattern = () => {
   };
 
   const handleSubmit = (mapping) => {
-    const success = saveMapping(mapping);
+    const success = gestureMappingStorage.save(mapping);
 
     if (!success) {
       setAlertMessage("이미 동일한 사이트와 패턴 조합이 존재합니다.");
