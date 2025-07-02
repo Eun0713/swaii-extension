@@ -43,8 +43,16 @@ const onMouseMove = (e) => {
   const movedX = x - prevX;
   const movedY = y - prevY;
 
-  if (Math.abs(movedX) > 2 || Math.abs(movedY)) {
+  const movedEnough = Math.abs(movedX) > 2 || Math.abs(movedY) > 2;
+
+  if (!hasMouseMoved && movedEnough) {
     hasMouseMoved = true;
+    insertCanvas();
+    clearCanvas();
+  }
+
+  if (!hasMouseMoved) {
+    return;
   }
 
   points.push([x, y]);
