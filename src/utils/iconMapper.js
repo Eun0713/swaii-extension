@@ -1,7 +1,7 @@
 import GestureCircleIcon from "@/assets/gestures/gesture-circle.svg?react";
 import GestureInfinityIcon from "@/assets/gestures/gesture-infinity.svg?react";
-import GestureLineIcon from "@/assets/gestures/gesture-line.svg?react";
 import GestureNShapeIcon from "@/assets/gestures/gesture-n-shape.svg?react";
+import GestureSShapeIcon from "@/assets/gestures/gesture-s-shape.svg?react";
 import GestureTriangleIcon from "@/assets/gestures/gesture-triangle.svg?react";
 import FigmaIcon from "@/assets/patterns/icon-figma-pattern.svg?react";
 import GoogleIcon from "@/assets/patterns/icon-google-pattern.svg?react";
@@ -12,7 +12,7 @@ export const getGestureIcon = (name) => {
   const map = {
     "원형 패턴": GestureCircleIcon,
     "무한대 패턴": GestureInfinityIcon,
-    "직선 패턴": GestureLineIcon,
+    "S자 패턴": GestureSShapeIcon,
     "삼각형 패턴": GestureTriangleIcon,
     "N자 패턴": GestureNShapeIcon,
   };
