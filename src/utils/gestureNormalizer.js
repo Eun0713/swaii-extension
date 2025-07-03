@@ -13,19 +13,29 @@ export const normalizePosition = (points) => {
 };
 
 export const normalizeScale = (points) => {
+  const round = (number, decimalPlaces = 2) =>
+    Math.round(number * Math.pow(10, decimalPlaces)) /
+    Math.pow(10, decimalPlaces);
+
   if (!points.length) {
     return [];
   }
 
-  const maxX = Math.max(...points.map((point) => point.x));
-  const maxY = Math.max(...points.map((point) => point.y));
+  const xValues = points.map((point) => point.x);
+  const yValues = points.map((point) => point.y);
 
-  const safeMaxX = maxX === 0 ? 1 : maxX;
-  const safeMaxY = maxY === 0 ? 1 : maxY;
+  const minX = Math.min(...xValues);
+  const maxX = Math.max(...xValues);
+  const minY = Math.min(...yValues);
+  const maxY = Math.max(...yValues);
+
+  const xRange = maxX - minX;
+  const yRange = maxY - minY;
+  const scale = Math.max(xRange, yRange) || 1;
 
   return points.map((point) => ({
-    x: (point.x / safeMaxX) * 100,
-    y: (point.y / safeMaxY) * 100,
+    x: round(((point.x - minX) / scale) * 100),
+    y: round(((point.y - minY) / scale) * 100),
   }));
 };
 
@@ -46,17 +56,17 @@ export const normalizePoints = (points, targetCount = 32) => {
 };
 
 export const calculateSimilarity = (pointsA, pointsB) => {
-  if (pointsA.length !== pointsB.length || pointsA.lenght === 0) {
+  if (pointsA.length !== pointsB.length || pointsA.length === 0) {
     return Infinity;
   }
 
   let totalDistance = 0;
 
-  for (let i = 0; i < pointsA.lenght; i++) {
+  for (let i = 0; i < pointsA.length; i++) {
     const distanceX = pointsA[i].x - pointsB[i].x;
     const distanceY = pointsA[i].y - pointsB[i].y;
     totalDistance += Math.sqrt(distanceX * distanceX + distanceY * distanceY);
   }
 
-  return totalDistance / pointsA.lenght;
+  return totalDistance / pointsA.length;
 };
