@@ -44,3 +44,19 @@ export const normalizePoints = (points, targetCount = 32) => {
 
   return result;
 };
+
+export const calculateSimilarity = (pointsA, pointsB) => {
+  if (pointsA.length !== pointsB.length || pointsA.lenght === 0) {
+    return Infinity;
+  }
+
+  let totalDistance = 0;
+
+  for (let i = 0; i < pointsA.lenght; i++) {
+    const distanceX = pointsA[i].x - pointsB[i].x;
+    const distanceY = pointsA[i].y - pointsB[i].y;
+    totalDistance += Math.sqrt(distanceX * distanceX + distanceY * distanceY);
+  }
+
+  return totalDistance / pointsA.lenght;
+};
