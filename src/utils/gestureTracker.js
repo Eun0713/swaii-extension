@@ -67,8 +67,6 @@ const onMouseUp = () => {
 
   isDrawing = false;
 
-  console.log("제스처 그리기 종료", points);
-
   const duration = Date.now() - mouseDownTime;
   const isGesture = hasMouseMoved || duration > 200;
 
