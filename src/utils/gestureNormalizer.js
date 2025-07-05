@@ -70,3 +70,10 @@ export const calculateSimilarity = (pointsA, pointsB) => {
 
   return totalDistance / pointsA.length;
 };
+
+export const normalizeAll = (points, targetCount) => {
+  const resampled = normalizePoints(points, targetCount);
+  const resized = normalizeScale(resampled);
+  const repositioned = normalizePosition(resized);
+  return repositioned;
+};
