@@ -4,6 +4,7 @@ import {
   drawOnCanvas,
   fadeOutCanvas,
 } from "@/utils/canvasDrawer";
+import { findMatchingGesture } from "@/utils/gestureMatcher.content";
 
 let isDrawing = false;
 let points = [];
@@ -73,6 +74,18 @@ const onMouseUp = () => {
 
   if (isGesture) {
     fadeOutCanvas();
+
+    try {
+      const matched = findMatchingGesture(points);
+
+      if (matched) {
+        console.log("매칭된 제스처:", matched.name);
+      } else {
+        console.log("매칭된 제스처 없음");
+      }
+    } catch (error) {
+      console.error("제스처 매칭 중 오류", error);
+    }
   }
 };
 
