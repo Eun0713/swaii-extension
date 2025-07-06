@@ -4,7 +4,9 @@ import {
   drawOnCanvas,
   fadeOutCanvas,
 } from "@/utils/canvasDrawer";
+import { getMatchedMapping } from "@/utils/gestureMappingResolver.content.js";
 import { findMatchingGesture } from "@/utils/gestureMatcher.content";
+import { runAction } from "@/utils/runAction";
 
 let isDrawing = false;
 let points = [];
@@ -70,20 +72,26 @@ const onMouseUp = async () => {
   const duration = Date.now() - mouseDownTime;
   const isGesture = hasMouseMoved || duration > 200;
 
-  if (isGesture) {
-    fadeOutCanvas();
+  if (!isGesture) {
+    return;
+  }
 
-    try {
-      const matched = await findMatchingGesture(points);
+  fadeOutCanvas();
 
-      if (matched) {
-        console.log("매칭된 제스처:", matched.name);
-      } else {
-        console.log("매칭된 제스처 없음");
-      }
-    } catch (error) {
-      console.error("제스처 매칭 중 오류", error);
+  try {
+    const matched = await findMatchingGesture(points);
+    if (!matched) {
+      return;
     }
+
+    const matchedGestureMapping = await getMatchedMapping(matched.name);
+    if (matchedGestureMapping) {
+      runAction(matchedGestureMapping.action, matchedGestureMapping.site);
+    } else {
+      console.log("매칭된 제스처 없음");
+    }
+  } catch (error) {
+    console.error("제스처 매칭 중 오류", error);
   }
 };
 
