@@ -3,7 +3,7 @@ import GestureInfinityIcon from "@/assets/gestures/gesture-infinity.svg?react";
 import GestureNShapeIcon from "@/assets/gestures/gesture-n-shape.svg?react";
 import GestureSShapeIcon from "@/assets/gestures/gesture-s-shape.svg?react";
 import GestureTriangleIcon from "@/assets/gestures/gesture-triangle.svg?react";
-import FigmaIcon from "@/assets/patterns/icon-figma-pattern.svg?react";
+import ChatGPTIcon from "@/assets/patterns/icon-chatgpt-pattern.svg?react";
 import GoogleIcon from "@/assets/patterns/icon-google-pattern.svg?react";
 import NotionIcon from "@/assets/patterns/icon-notion-pattern.svg?react";
 import YoutubeIcon from "@/assets/patterns/icon-youtube-pattern.svg?react";
@@ -24,7 +24,7 @@ export const getSiteIcon = (site) => {
     "Youtube.com": YoutubeIcon,
     "Google.com": GoogleIcon,
     "notion.so": NotionIcon,
-    "Figma.com": FigmaIcon,
+    "chatgpt.com": ChatGPTIcon,
   };
   return map[site] || null;
 };

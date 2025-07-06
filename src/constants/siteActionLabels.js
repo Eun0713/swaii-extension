@@ -8,4 +8,9 @@ export const SITE_ACTION_LABELS = {
     "스크롤 맨 위로": "notionScrollTop",
     "페이지 새로고침": "notionReload",
   },
+  "chatgpt.com": {
+    "새 대화 창 열기": "chatgptNewChat",
+    "스크롤 맨 위로": "chatgptScrollTop",
+    "스크롤 맨 아래로": "chatgptScrollBottom",
+  },
 };

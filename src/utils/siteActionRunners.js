@@ -33,4 +33,29 @@ export const siteActionRunners = {
   notionReload: () => {
     location.reload();
   },
+
+  chatgptNewChat: () => {
+    const newChatLink = [...document.querySelectorAll("a")].find((element) =>
+      element.textContent.includes("새 채팅")
+    );
+    if (newChatLink) {
+      newChatLink.click();
+    }
+  },
+  chatgptScrollTop: () => {
+    const element = document.querySelector(
+      "#thread > div > div.flex.basis-auto.flex-col.-mb-\\(--composer-overlap-px\\).\\[--composer-overlap-px\\:55px\\].grow.overflow-hidden > div > div"
+    );
+    if (element) {
+      element.scrollTo({ top: 0, behavior: "smooth" });
+    }
+  },
+  chatgptScrollBottom: () => {
+    const element = document.querySelector(
+      "#thread > div > div.flex.basis-auto.flex-col.-mb-\\(--composer-overlap-px\\).\\[--composer-overlap-px\\:55px\\].grow.overflow-hidden > div > div"
+    );
+    if (element) {
+      element.scrollTo({ top: element.scrollHeight, behavior: "smooth" });
+    }
+  },
 };
