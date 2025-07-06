@@ -1,30 +1,34 @@
 const storageArrayStore = ({ key, getId }) => {
-  const getAll = () => {
-    const raw = localStorage.getItem(key);
-    return raw ? JSON.parse(raw) : [];
+  const getAll = async () => {
+    const result = await chrome.storage.local.get(key);
+    return result[key] ? result[key] : [];
   };
 
-  const hasItem = (target) => {
-    return getAll().some((entry) => getId(entry) === getId(target));
+  const hasItem = async (target) => {
+    const all = await getAll();
+    return all.some((entry) => getId(entry) === getId(target));
   };
 
-  const save = (item) => {
-    if (hasItem(item)) {
+  const save = async (item) => {
+    const isDuplicateGesture = await hasItem(item);
+    if (isDuplicateGesture) {
       return false;
     }
 
-    const all = getAll();
+    const all = await getAll();
     const newItem = { ...item, createdAt: new Date().toISOString() };
-    localStorage.setItem(key, JSON.stringify([...all, newItem]));
+    const updated = [...all, newItem];
+    await chrome.storage.local.set({ [key]: updated });
     return true;
   };
 
-  const remove = (target) => {
-    const updated = getAll().filter((entry) => getId(entry) !== getId(target));
-    localStorage.setItem(key, JSON.stringify(updated));
+  const remove = async (target) => {
+    const all = await getAll();
+    const updated = all.filter((entry) => getId(entry) !== getId(target));
+    await chrome.storage.local.set({ [key]: updated });
   };
 
-  return { getAll, save, remove, hasItem };
+  return { getAll, hasItem, save, remove };
 };
 
 export default storageArrayStore;

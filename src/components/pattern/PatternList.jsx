@@ -7,8 +7,9 @@ import { getSiteIcon, getGestureIcon } from "@/utils/iconMapper";
 const PatternList = () => {
   const [patternList, setPatternList] = useState([]);
 
-  const loadPatternList = () => {
-    setPatternList(gestureMappingStorage.getAll());
+  const loadPatternList = async () => {
+    const list = await gestureMappingStorage.getAll();
+    setPatternList(list);
   };
 
   useEffect(() => {

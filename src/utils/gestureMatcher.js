@@ -1,7 +1,7 @@
 import { normalizeAll, calculateSimilarity } from "@/utils/gestureNormalizer";
 import { gestureStore } from "@/utils/gestureStorage";
 
-export const findMatchingGesture = (rawPoints) => {
+export const findMatchingGesture = async (rawPoints) => {
   const SIMILARITY_THRESHOLD = 40;
 
   const convertToObjectPoints = (points) => {
@@ -18,7 +18,7 @@ export const findMatchingGesture = (rawPoints) => {
   const userGesturePoints = convertToObjectPoints(rawPoints);
   const normalizedUserGesture = normalizeAll(userGesturePoints);
 
-  const gestures = gestureStore.getAll();
+  const gestures = await gestureStore.getAll();
 
   let mostSimilarGesture = null;
   let bestSimilarityScore = Infinity;

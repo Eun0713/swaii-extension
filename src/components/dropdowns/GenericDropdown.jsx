@@ -1,3 +1,5 @@
+import { useEffect, useState } from "react";
+
 import IconDropdownArrow from "@/assets/icons/icon-dropdown-arrow.svg?react";
 import { gestureStore } from "@/utils/gestureStorage";
 
@@ -9,13 +11,22 @@ const GenericDropdown = ({
   items,
   label,
 }) => {
-  const dropdownItems =
-    items === "gesture"
-      ? gestureStore
-          .getAll()
-          .filter((gesture) => gesture.type === "default")
-          .map((gesture) => gesture.name)
-      : items;
+  const [dropdownItems, setDropdownItems] = useState([]);
+
+  useEffect(() => {
+    if (items !== "gesture") {
+      setDropdownItems(items);
+      return;
+    }
+
+    (async () => {
+      const gestures = await gestureStore.getAll();
+      const defaultGestureNames = gestures
+        .filter((gesture) => gesture.type === "default")
+        .map((gesture) => gesture.name);
+      setDropdownItems(defaultGestureNames);
+    })();
+  }, [items]);
 
   return (
     <div className="relative w-full">

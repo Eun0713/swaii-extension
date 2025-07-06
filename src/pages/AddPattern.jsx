@@ -16,8 +16,8 @@ const AddPattern = () => {
     window.close();
   };
 
-  const handleSubmit = (mapping) => {
-    const success = gestureMappingStorage.save(mapping);
+  const handleSubmit = async (mapping) => {
+    const success = await gestureMappingStorage.save(mapping);
 
     if (!success) {
       setAlertMessage("이미 동일한 사이트와 패턴 조합이 존재합니다.");

@@ -10,8 +10,8 @@ export const initDefaultGestures = async () => {
     const res = await fetch("/default-gestures.json");
     const defaultGestures = await res.json();
 
-    defaultGestures.forEach((gesture) => {
-      gestureStore.save(gesture);
+    defaultGestures.forEach(async (gesture) => {
+      await gestureStore.save(gesture);
     });
   } catch (error) {
     console.error("기본 제스처 불러오기 실패:", error);

@@ -60,7 +60,7 @@ const onMouseMove = (e) => {
   drawOnCanvas(x, y, points);
 };
 
-const onMouseUp = () => {
+const onMouseUp = async () => {
   if (!isDrawing) {
     return;
   }
@@ -74,7 +74,7 @@ const onMouseUp = () => {
     fadeOutCanvas();
 
     try {
-      const matched = findMatchingGesture(points);
+      const matched = await findMatchingGesture(points);
 
       if (matched) {
         console.log("매칭된 제스처:", matched.name);

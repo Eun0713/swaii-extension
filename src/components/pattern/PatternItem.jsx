@@ -18,8 +18,8 @@ const PatternItem = ({
 
   const handleOpenModal = () => setIsModalOpen(true);
   const handleCloseModal = () => setIsModalOpen(false);
-  const handleDeleteConfirm = () => {
-    gestureMappingStorage.remove(mapping);
+  const handleDeleteConfirm = async () => {
+    await gestureMappingStorage.remove(mapping);
     onDelete();
     handleCloseModal();
   };
