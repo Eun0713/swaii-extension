@@ -23,7 +23,7 @@ export const getSiteIcon = (site) => {
   const map = {
     "Youtube.com": YoutubeIcon,
     "Google.com": GoogleIcon,
-    "Notion.com": NotionIcon,
+    "notion.so": NotionIcon,
     "Figma.com": FigmaIcon,
   };
   return map[site] || null;
