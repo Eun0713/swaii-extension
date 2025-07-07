@@ -74,7 +74,7 @@ const PatternForm = ({
       <div className="mt-5">
         <label className="mb-1 block text-sm text-white">기능 선택</label>
         <ActionDropdown
-          value={action}
+          site={site}
           onChange={setAction}
           isOpen={openDropdown === "action"}
           onToggle={() => toggle("action")}
