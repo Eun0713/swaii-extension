@@ -8,9 +8,11 @@ import gestureMappingStorage from "@/utils/gestureMappingStorage";
 
 const AddPattern = () => {
   const navigate = useNavigate();
-  const [alertMessage, setAlertMessage] = useState("");
-  const [alertType, setAlertType] = useState("success");
-  const [alertVisible, setAlertVisible] = useState(false);
+  const [alert, setAlert] = useState({
+    message: "",
+    type: "success",
+    visible: false,
+  });
 
   const handleClose = () => {
     window.close();
@@ -20,20 +22,24 @@ const AddPattern = () => {
     const success = await gestureMappingStorage.save(mapping);
 
     if (!success) {
-      setAlertMessage("이미 동일한 사이트와 패턴 조합이 존재합니다.");
-      setAlertType("error");
-      setAlertVisible(true);
-      setTimeout(() => setAlertVisible(false), 2000);
+      setAlert({
+        message: "이미 동일한 사이트와 패턴 조합이 존재합니다.",
+        type: "error",
+        visible: true,
+      });
+      setTimeout(() => setAlert((prev) => ({ ...prev, visible: false })), 1000);
       return;
     }
 
-    setAlertMessage("저장되었습니다.");
-    setAlertType("success");
-    setAlertVisible(true);
+    setAlert({
+      message: "저장되었습니다.",
+      type: "success",
+      visible: true,
+    });
     setTimeout(() => {
-      setAlertVisible(false);
+      setAlert((prev) => ({ ...prev, visible: false }));
       navigate("/settings");
-    }, 2000);
+    }, 1000);
   };
 
   const handleCancel = () => {
@@ -48,9 +54,9 @@ const AddPattern = () => {
         onClose={handleClose}
       >
         <AlertMessage
-          message={alertMessage}
-          type={alertType}
-          visible={alertVisible}
+          message={alert.message}
+          type={alert.type}
+          visible={alert.visible}
         />
         <PatternForm
           onCancel={handleCancel}
