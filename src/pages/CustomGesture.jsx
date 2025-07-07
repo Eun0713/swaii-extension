@@ -6,6 +6,7 @@ import HeaderLayout from "@/components/common/HeaderLayout";
 import GestureButtons from "@/components/gesture/GestureButtons";
 import GestureCanvas from "@/components/gesture/GestureCanvas";
 import GestureInput from "@/components/gesture/GestureInput";
+import { gestureStore } from "@/utils/gestureStorage";
 
 const CustomGesture = () => {
   const navigate = useNavigate();
@@ -22,24 +23,33 @@ const CustomGesture = () => {
 
   const showAlert = (message, type = "error") => {
     setAlert({ message, type, visible: true });
-    setTimeout(() => setAlert((prev) => ({ ...prev, visible: false })), 2000);
+    setTimeout(() => {
+      setAlert((prev) => ({ ...prev, visible: false }));
+    }, 1000);
   };
 
-  const handleSave = () => {
+  const handleSave = async () => {
     if (!name.trim()) return showAlert("제스처 이름을 입력해주세요.");
     if (path.length < 5) return showAlert("제스처를 충분히 그려주세요.");
 
-    const gestures = JSON.parse(localStorage.getItem("customGestures") || "[]");
-    gestures.push({ name, path });
-    localStorage.setItem("customGestures", JSON.stringify(gestures));
+    const success = await gestureStore.save({
+      name,
+      type: "custom",
+      points: path,
+    });
+
+    if (!success) {
+      showAlert("이미 존재하는 이름입니다.");
+      return;
+    }
 
     showAlert("제스처가 저장되었습니다.", "success");
-    setName("");
-    setPath([]);
 
     setTimeout(() => {
+      setName("");
+      setPath([]);
       navigate(-1);
-    }, 2000);
+    }, 1000);
   };
 
   const handleCancel = () => {
