@@ -19,29 +19,33 @@ const AddPattern = () => {
   };
 
   const handleSubmit = async (mapping) => {
-    const success = await gestureMappingStorage.save(mapping);
+    try {
+      const success = await gestureMappingStorage.save(mapping);
 
-    if (!success) {
+      if (!success) {
+        setAlert({
+          message: "이미 동일한 사이트와 패턴 조합이 존재합니다.",
+          type: "error",
+          visible: true,
+        });
+        setTimeout(() => {
+          setAlert((prev) => ({ ...prev, visible: false }));
+        }, 1000);
+        return;
+      }
+
       setAlert({
-        message: "이미 동일한 사이트와 패턴 조합이 존재합니다.",
-        type: "error",
+        message: "저장되었습니다.",
+        type: "success",
         visible: true,
       });
       setTimeout(() => {
         setAlert((prev) => ({ ...prev, visible: false }));
+        navigate("/settings");
       }, 1000);
-      return;
+    } catch (error) {
+      console.error(error);
     }
-
-    setAlert({
-      message: "저장되었습니다.",
-      type: "success",
-      visible: true,
-    });
-    setTimeout(() => {
-      setAlert((prev) => ({ ...prev, visible: false }));
-      navigate("/settings");
-    }, 1000);
   };
 
   const handleCancel = () => {
