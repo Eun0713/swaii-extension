@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
 import IconPlus from "@/assets/icons/icon-plus.svg?react";
@@ -7,6 +7,7 @@ import Button from "@/components/common/Button";
 import ActionDropdown from "@/components/dropdowns/ActionDropdown";
 import GestureDropdown from "@/components/dropdowns/GestureDropdown";
 import SiteDropdown from "@/components/dropdowns/SiteDropdown";
+import { SITE_ACTION_LABELS } from "@/constants/siteActionLabels";
 
 const PatternForm = ({
   initialData = {},
@@ -21,6 +22,13 @@ const PatternForm = ({
   const [showErrorAlert, setShowErrorAlert] = useState(false);
 
   const navigate = useNavigate();
+
+  useEffect(() => {
+    const validActions = Object.keys(SITE_ACTION_LABELS[site]);
+    if (!validActions.includes(action)) {
+      setAction("");
+    }
+  }, [action, site]);
 
   const showTemporaryError = () => {
     setShowErrorAlert(true);
@@ -75,6 +83,7 @@ const PatternForm = ({
         <label className="mb-1 block text-sm text-white">기능 선택</label>
         <ActionDropdown
           site={site}
+          value={action}
           onChange={setAction}
           isOpen={openDropdown === "action"}
           onToggle={() => toggle("action")}
