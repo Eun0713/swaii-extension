@@ -24,7 +24,7 @@ const PatternForm = ({
   const navigate = useNavigate();
 
   useEffect(() => {
-    const validActions = Object.keys(SITE_ACTION_LABELS[site]);
+    const validActions = Object.keys(SITE_ACTION_LABELS[site] || {});
     if (!validActions.includes(action)) {
       setAction("");
     }
