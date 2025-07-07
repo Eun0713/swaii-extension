@@ -6,7 +6,7 @@ import {
 } from "@/utils/canvasDrawer";
 import { getMatchedMapping } from "@/utils/gestureMappingResolver.content.js";
 import { findMatchingGesture } from "@/utils/gestureMatcher.content";
-import { runAction } from "@/utils/runAction";
+import { runAction } from "@/utils/runAction.content";
 
 let isDrawing = false;
 let points = [];
