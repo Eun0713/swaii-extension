@@ -28,7 +28,19 @@ const storageArrayStore = ({ key, getId }) => {
     await chrome.storage.local.set({ [key]: updated });
   };
 
-  return { getAll, hasItem, save, remove };
+  const update = async (original, updated) => {
+    const all = await getAll();
+
+    const updatedList = all.map((entry) =>
+      getId(entry) === getId(original)
+        ? { ...updated, createdAt: entry.createdAt }
+        : entry
+    );
+
+    await chrome.storage.local.set({ [key]: updatedList });
+  };
+
+  return { getAll, hasItem, save, remove, update };
 };
 
 export default storageArrayStore;
