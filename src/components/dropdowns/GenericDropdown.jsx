@@ -21,10 +21,14 @@ const GenericDropdown = ({
 
     (async () => {
       const gestures = await gestureStore.getAll();
-      const defaultGestureNames = gestures
-        .filter((gesture) => gesture.type === "default")
-        .map((gesture) => gesture.name);
-      setDropdownItems(defaultGestureNames);
+
+      const gestureItems = gestures.map((gesture) => ({
+        label: gesture.name + (gesture.type === "custom" ? " (사용자)" : ""),
+        value: gesture.name,
+        type: gesture.type,
+      }));
+
+      setDropdownItems(gestureItems);
     })();
   }, [items]);
 
@@ -45,14 +49,14 @@ const GenericDropdown = ({
         <ul className="scrollbar-hide absolute z-10 mt-1 max-h-24 w-full overflow-auto rounded-md bg-[#2F2F38]">
           {dropdownItems.map((item) => (
             <li
-              key={item}
-              className="cursor-pointer px-4 py-2 text-base text-white"
+              key={`${item.value}-${item.type}`}
+              className="cursor-pointer px-4 py-2 text-base text-white hover:bg-[#3A3A45]"
               onClick={() => {
-                onChange(item);
+                onChange(item.value);
                 onToggle();
               }}
             >
-              {item}
+              {item.label}
             </li>
           ))}
         </ul>
