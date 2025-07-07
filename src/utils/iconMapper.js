@@ -21,7 +21,7 @@ export const getGestureIcon = (name) => {
 
 export const getSiteIcon = (site) => {
   const map = {
-    "Youtube.com": YoutubeIcon,
+    "youtube.com": YoutubeIcon,
     "Google.com": GoogleIcon,
     "notion.so": NotionIcon,
     "chatgpt.com": ChatGPTIcon,

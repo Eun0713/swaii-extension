@@ -58,4 +58,29 @@ export const siteActionRunners = {
       element.scrollTo({ top: element.scrollHeight, behavior: "smooth" });
     }
   },
+
+  youtubePauseVideo: () => {
+    const video = document.querySelector("video");
+    if (video) {
+      video.pause();
+    }
+  },
+  youtubePlayVideo: () => {
+    const video = document.querySelector("video");
+    if (video) {
+      video.play();
+    }
+  },
+  youtubeNextVideo: () => {
+    const nextButton = document.querySelector(".ytp-next-button");
+    if (nextButton) {
+      nextButton.click();
+    }
+  },
+  youtubePrevVideo: () => {
+    const prevButton = document.querySelector(".ytp-prev-button");
+    if (prevButton && prevButton.getAttribute("aria-disabled") !== "true") {
+      prevButton.click();
+    }
+  },
 };
