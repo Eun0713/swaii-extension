@@ -27,7 +27,9 @@ const AddPattern = () => {
         type: "error",
         visible: true,
       });
-      setTimeout(() => setAlert((prev) => ({ ...prev, visible: false })), 1000);
+      setTimeout(() => {
+        setAlert((prev) => ({ ...prev, visible: false }));
+      }, 1000);
       return;
     }
 
