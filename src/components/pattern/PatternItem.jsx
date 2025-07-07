@@ -24,6 +24,12 @@ const PatternItem = ({
     handleCloseModal();
   };
 
+  const handleEdit = () => {
+    chrome.storage.local.set({ selectedPattern: mapping }, () => {
+      navigate("/settings/edit");
+    });
+  };
+
   const renderDeleteModal = () => (
     <DeleteConfirmModal
       title="이 패턴을 삭제하시겠습니까?"
@@ -51,11 +57,7 @@ const PatternItem = ({
         </div>
 
         <div className="flex gap-2">
-          <Button
-            variant="muted"
-            onClick={() => navigate("/settings/edit")}
-            size="sm"
-          >
+          <Button variant="muted" onClick={handleEdit} size="sm">
             수정
           </Button>
           <Button variant="neutralDanger" onClick={handleOpenModal} size="sm">
