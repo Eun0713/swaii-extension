@@ -5,6 +5,7 @@ import AlertMessage from "@/components/common/AlertMessage";
 import HeaderLayout from "@/components/common/HeaderLayout";
 import PatternForm from "@/components/pattern/PatternForm";
 import gestureMappingStorage from "@/utils/gestureMappingStorage";
+import { gestureStore } from "@/utils/gestureStorage";
 
 const AddPattern = () => {
   const navigate = useNavigate();
@@ -20,7 +21,17 @@ const AddPattern = () => {
 
   const handleSubmit = async (mapping) => {
     try {
-      const success = await gestureMappingStorage.save(mapping);
+      const matchedGestureData = await gestureStore.getGestureByName(
+        mapping.gesture
+      );
+
+      const mappingWithPoints = {
+        ...mapping,
+        points: matchedGestureData?.points || [],
+        createdAt: new Date().toISOString(),
+      };
+
+      const success = await gestureMappingStorage.save(mappingWithPoints);
 
       if (!success) {
         setAlert({
@@ -28,9 +39,11 @@ const AddPattern = () => {
           type: "error",
           visible: true,
         });
+
         setTimeout(() => {
           setAlert((prev) => ({ ...prev, visible: false }));
         }, 1000);
+
         return;
       }
 
@@ -39,6 +52,7 @@ const AddPattern = () => {
         type: "success",
         visible: true,
       });
+
       setTimeout(() => {
         setAlert((prev) => ({ ...prev, visible: false }));
         navigate("/settings");

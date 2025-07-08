@@ -5,6 +5,7 @@ import AlertMessage from "@/components/common/AlertMessage";
 import HeaderLayout from "@/components/common/HeaderLayout";
 import PatternForm from "@/components/pattern/PatternForm";
 import gestureMappingStorage from "@/utils/gestureMappingStorage";
+import { gestureStore } from "@/utils/gestureStorage";
 
 const EditPattern = () => {
   const navigate = useNavigate();
@@ -52,12 +53,23 @@ const EditPattern = () => {
         return;
       }
 
-      await gestureMappingStorage.update(initialData, updatedMapping);
+      const matchedGestureData = await gestureStore.getGestureByName(
+        updatedMapping.gesture
+      );
+
+      const updatedMappingWithPoints = {
+        ...updatedMapping,
+        points: matchedGestureData?.points || [],
+      };
+
+      await gestureMappingStorage.update(initialData, updatedMappingWithPoints);
+
       setAlert({
         message: "저장되었습니다.",
         type: "success",
         visible: true,
       });
+
       setTimeout(() => {
         setAlert((prev) => ({ ...prev, visible: false }));
         navigate("/settings");
