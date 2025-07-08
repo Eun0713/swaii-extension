@@ -18,6 +18,8 @@ const GestureThumbnail = ({ points, width = 36, height = 36 }) => {
     ctx.strokeStyle = "#ffffff";
     ctx.lineWidth = 3;
 
+    const padding = 2;
+
     const minX = Math.min(...points.map((point) => point.x));
     const minY = Math.min(...points.map((point) => point.y));
     const maxX = Math.max(...points.map((point) => point.x));
@@ -26,8 +28,8 @@ const GestureThumbnail = ({ points, width = 36, height = 36 }) => {
     const gestureWidth = maxX - minX;
     const gestureHeight = maxY - minY;
 
-    const scaleX = width / (gestureWidth || 1);
-    const scaleY = height / (gestureHeight || 1);
+    const scaleX = (width - padding * 2) / (gestureWidth || 1);
+    const scaleY = (height - padding * 2) / (gestureHeight || 1);
     const scale = Math.min(scaleX, scaleY);
 
     const centerOffsetX = (width - gestureWidth * scale) / 2;
