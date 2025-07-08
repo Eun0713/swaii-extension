@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 
 import Button from "@/components/common/Button";
 import DeleteConfirmModal from "@/components/common/DeleteConfirmModal";
+import GestureThumbnail from "@/components/gesture/GestureThumbnail";
 import gestureMappingStorage from "@/utils/gestureMappingStorage";
 
 const PatternItem = ({
@@ -52,7 +53,11 @@ const PatternItem = ({
 
         <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
           <div className="flex items-center justify-center">
-            {GestureIcon && <GestureIcon className="h-7 w-7" />}
+            {GestureIcon ? (
+              <GestureIcon className="h-7 w-7" />
+            ) : (
+              <GestureThumbnail points={mapping.points} />
+            )}
           </div>
         </div>
 
