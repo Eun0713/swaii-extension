@@ -3,7 +3,10 @@ import { SITE_ACTION_LABELS } from "@/constants/siteActionLabels";
 
 const ActionDropdown = ({ site, ...props }) => {
   const actionOptions = SITE_ACTION_LABELS[site]
-    ? Object.keys(SITE_ACTION_LABELS[site])
+    ? Object.keys(SITE_ACTION_LABELS[site]).map((action) => ({
+        label: action,
+        value: action,
+      }))
     : [];
 
   return <GenericDropdown {...props} items={actionOptions} label="기능 선택" />;
