@@ -11,7 +11,9 @@ const DeleteConfirmModal = ({ title, description, onCancel, onConfirm }) => {
         <h2 className="mb-2 text-center text-base font-bold text-black">
           {title}
         </h2>
-        <p className="mb-4 text-center text-xs text-gray-700">{description}</p>
+        <p className="mb-4 whitespace-pre-line text-center text-xs text-gray-700">
+          {description}
+        </p>
         <div className="flex justify-end gap-2">
           <Button variant="default" onClick={onCancel} size="sm">
             취소
