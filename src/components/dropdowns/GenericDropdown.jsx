@@ -75,6 +75,21 @@ const GenericDropdown = ({
     }, 1000);
   };
 
+  const handleDelete = async (e, item) => {
+    e.stopPropagation();
+
+    const mappings = await gestureMappingStorage.getAll();
+    const isMapped = mappings.some((mapping) => mapping.gesture === item.value);
+
+    if (isMapped) {
+      setGestureToDelete(item);
+      setOpenModal(true);
+      return;
+    }
+
+    await deleteGesture(item);
+  };
+
   return (
     <>
       <AlertMessage
@@ -129,25 +144,7 @@ const GenericDropdown = ({
                 </span>
 
                 {item.type === "custom" && (
-                  <button
-                    type="button"
-                    onClick={async (e) => {
-                      e.stopPropagation();
-
-                      const mappings = await gestureMappingStorage.getAll();
-                      const isMapped = mappings.some(
-                        (mapping) => mapping.gesture === item.value
-                      );
-
-                      if (isMapped) {
-                        setGestureToDelete(item);
-                        setOpenModal(true);
-                        return;
-                      }
-
-                      await deleteGesture(item);
-                    }}
-                  >
+                  <button type="button" onClick={(e) => handleDelete(e, item)}>
                     <DeleteButton />
                   </button>
                 )}
