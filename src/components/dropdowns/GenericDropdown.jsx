@@ -26,23 +26,23 @@ const GenericDropdown = ({
   const [openModal, setOpenModal] = useState(false);
   const [gestureToDelete, setGestureToDelete] = useState(null);
 
+  const loadGestureItems = async () => {
+    const gestures = await gestureStore.getAll();
+    const gestureItems = gestures.map((gesture) => ({
+      label: gesture.name + (gesture.type === "custom" ? " (사용자)" : ""),
+      value: gesture.name,
+      type: gesture.type,
+    }));
+    setDropdownItems(gestureItems);
+  };
+
   useEffect(() => {
     if (items !== "gesture") {
       setDropdownItems(items);
       return;
     }
 
-    (async () => {
-      const gestures = await gestureStore.getAll();
-
-      const gestureItems = gestures.map((gesture) => ({
-        label: gesture.name + (gesture.type === "custom" ? " (사용자)" : ""),
-        value: gesture.name,
-        type: gesture.type,
-      }));
-
-      setDropdownItems(gestureItems);
-    })();
+    loadGestureItems();
   }, [items]);
 
   const deleteGesture = async (item) => {
@@ -54,13 +54,7 @@ const GenericDropdown = ({
     );
     await gestureMappingStorage.setAll(updatedMappings);
 
-    const updated = await gestureStore.getAll();
-    const updatedItems = updated.map((gesture) => ({
-      label: gesture.name + (gesture.type === "custom" ? " (사용자)" : ""),
-      value: gesture.name,
-      type: gesture.type,
-    }));
-    setDropdownItems(updatedItems);
+    await loadGestureItems();
 
     if (item.value === value) {
       onChange("");
