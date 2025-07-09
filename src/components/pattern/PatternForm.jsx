@@ -76,6 +76,8 @@ const PatternForm = ({
           onChange={setGesture}
           isOpen={openDropdown === "gesture"}
           onToggle={() => toggle("gesture")}
+          editingGestureName={initialData.gesture}
+          navigateToSettings={() => navigate("/settings")}
         />
       </div>
 

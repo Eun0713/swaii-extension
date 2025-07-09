@@ -14,6 +14,8 @@ const GenericDropdown = ({
   onChange,
   items,
   label,
+  editingGestureName,
+  navigateToSettings,
 }) => {
   const [dropdownItems, setDropdownItems] = useState([]);
   const [alert, setAlert] = useState({
@@ -62,6 +64,10 @@ const GenericDropdown = ({
 
     if (item.value === value) {
       onChange("");
+    }
+
+    if (item.value === editingGestureName) {
+      navigateToSettings();
     }
 
     setAlert({
