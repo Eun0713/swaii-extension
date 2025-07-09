@@ -3,6 +3,8 @@ import { useEffect, useState } from "react";
 import DeleteButton from "@/assets/icons/icon-close.svg?react";
 import IconDropdownArrow from "@/assets/icons/icon-dropdown-arrow.svg?react";
 import AlertMessage from "@/components/common/AlertMessage";
+import DeleteConfirmModal from "@/components/common/DeleteConfirmModal";
+import gestureMappingStorage from "@/utils/gestureMappingStorage";
 import { gestureStore } from "@/utils/gestureStorage";
 
 const GenericDropdown = ({
@@ -19,6 +21,8 @@ const GenericDropdown = ({
     type: "success",
     visible: false,
   });
+  const [openModal, setOpenModal] = useState(false);
+  const [gestureToDelete, setGestureToDelete] = useState(null);
 
   useEffect(() => {
     if (items !== "gesture") {
@@ -39,6 +43,38 @@ const GenericDropdown = ({
     })();
   }, [items]);
 
+  const deleteGesture = async (item) => {
+    await gestureStore.remove({ name: item.value, type: "custom" });
+
+    const mappings = await gestureMappingStorage.getAll();
+    const updatedMappings = mappings.filter(
+      (mapping) => mapping.gesture !== item.value
+    );
+    await gestureMappingStorage.setAll(updatedMappings);
+
+    const updated = await gestureStore.getAll();
+    const updatedItems = updated.map((gesture) => ({
+      label: gesture.name + (gesture.type === "custom" ? " (사용자)" : ""),
+      value: gesture.name,
+      type: gesture.type,
+    }));
+    setDropdownItems(updatedItems);
+
+    if (item.value === value) {
+      onChange("");
+    }
+
+    setAlert({
+      message: `${item.value} 제스처가 삭제되었습니다.`,
+      type: "error",
+      visible: true,
+    });
+
+    setTimeout(() => {
+      setAlert((prev) => ({ ...prev, visible: false }));
+    }, 1000);
+  };
+
   return (
     <>
       <AlertMessage
@@ -46,6 +82,23 @@ const GenericDropdown = ({
         type={alert.type}
         visible={alert.visible}
       />
+
+      {openModal && gestureToDelete && (
+        <DeleteConfirmModal
+          title="사용 중인 제스처입니다."
+          description={`"${gestureToDelete.value}"을 삭제하면 연결된 동작도 함께 사라집니다.\n정말 삭제하시겠습니까?`}
+          onCancel={() => {
+            setOpenModal(false);
+            setGestureToDelete(null);
+          }}
+          onConfirm={async () => {
+            await deleteGesture(gestureToDelete);
+            setOpenModal(false);
+            setGestureToDelete(null);
+          }}
+        />
+      )}
+
       <div className="relative w-full">
         <button
           type="button"
@@ -80,34 +133,19 @@ const GenericDropdown = ({
                     type="button"
                     onClick={async (e) => {
                       e.stopPropagation();
-                      await gestureStore.remove({
-                        name: item.value,
-                        type: "custom",
-                      });
 
-                      const updated = await gestureStore.getAll();
-                      const updatedItems = updated.map((gesture) => ({
-                        label:
-                          gesture.name +
-                          (gesture.type === "custom" ? " (사용자)" : ""),
-                        value: gesture.name,
-                        type: gesture.type,
-                      }));
-                      setDropdownItems(updatedItems);
+                      const mappings = await gestureMappingStorage.getAll();
+                      const isMapped = mappings.some(
+                        (mapping) => mapping.gesture === item.value
+                      );
 
-                      if (item.value === value) {
-                        onChange("");
+                      if (isMapped) {
+                        setGestureToDelete(item);
+                        setOpenModal(true);
+                        return;
                       }
 
-                      setAlert({
-                        message: `${item.value} 제스처가 삭제되었습니다.`,
-                        type: "error",
-                        visible: true,
-                      });
-
-                      setTimeout(() => {
-                        setAlert((prev) => ({ ...prev, visible: false }));
-                      }, 1000);
+                      await deleteGesture(item);
                     }}
                   >
                     <DeleteButton />
