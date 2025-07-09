@@ -5,7 +5,7 @@ const AlertMessage = ({ message, type = "error", visible }) => {
     : "opacity-0 invisible -translate-y-3";
 
   return (
-    <div className="absolute left-0 top-0 z-50 flex w-full justify-center">
+    <div className="pointer-events-none absolute left-0 top-0 z-50 flex w-full justify-center">
       <div
         className={`mt-5 rounded-md px-4 py-2 text-sm text-white shadow transition-all duration-300 ${bgColor} ${visibility}`}
       >
