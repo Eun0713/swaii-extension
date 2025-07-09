@@ -1,3 +1,3 @@
-import { initGestureTracking } from "@/utils/gestureTracker";
+import { initGestureTracking } from "@/utils/gesture/gestureTracker";
 
 initGestureTracking();

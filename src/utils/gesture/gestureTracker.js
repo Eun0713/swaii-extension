@@ -1,12 +1,12 @@
+import { runAction } from "@/utils/action/runAction.content";
 import {
   insertCanvas,
   clearCanvas,
   drawOnCanvas,
   fadeOutCanvas,
-} from "@/utils/canvasDrawer";
-import { getMatchedMapping } from "@/utils/gestureMappingResolver.content.js";
-import { findMatchingGesture } from "@/utils/gestureMatcher.content";
-import { runAction } from "@/utils/runAction.content";
+} from "@/utils/canvas/canvasDrawer";
+import { findMatchingGesture } from "@/utils/gesture/gestureMatcher.content";
+import { getMatchedMapping } from "@/utils/mapping/gestureMappingResolver.content";
 
 let isDrawing = false;
 let points = [];

@@ -4,8 +4,8 @@ import DeleteButton from "@/assets/icons/icon-close.svg?react";
 import IconDropdownArrow from "@/assets/icons/icon-dropdown-arrow.svg?react";
 import AlertMessage from "@/components/common/AlertMessage";
 import DeleteConfirmModal from "@/components/common/DeleteConfirmModal";
-import gestureMappingStorage from "@/utils/gestureMappingStorage";
-import { gestureStore } from "@/utils/gestureStorage";
+import gestureMappingStorage from "@/utils/mapping/gestureMappingStorage";
+import { gestureStore } from "@/utils/gesture/gestureStorage";
 
 const GenericDropdown = ({
   isOpen,

@@ -6,7 +6,7 @@ import HeaderLayout from "@/components/common/HeaderLayout";
 import GestureButtons from "@/components/gesture/GestureButtons";
 import GestureCanvas from "@/components/gesture/GestureCanvas";
 import GestureInput from "@/components/gesture/GestureInput";
-import { gestureStore } from "@/utils/gestureStorage";
+import { gestureStore } from "@/utils/gesture/gestureStorage";
 
 const CustomGesture = () => {
   const navigate = useNavigate();

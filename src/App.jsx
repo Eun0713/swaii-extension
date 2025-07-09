@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 
 import Router from "@/Router";
-import { initDefaultGestures } from "@/utils/gestureStorage";
+import { initDefaultGestures } from "@/utils/gesture/gestureStorage";
 
 function App() {
   useEffect(() => {

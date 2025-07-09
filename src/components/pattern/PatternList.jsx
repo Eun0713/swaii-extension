@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 
 import PatternItem from "@/components/pattern/PatternItem";
-import gestureMappingStorage from "@/utils/gestureMappingStorage";
-import { getSiteIcon, getGestureIcon } from "@/utils/iconMapper";
+import gestureMappingStorage from "@/utils/mapping/gestureMappingStorage";
+import { getSiteIcon, getGestureIcon } from "@/utils/ui/iconMapper";
 
 const PatternList = () => {
   const [patternList, setPatternList] = useState([]);

@@ -4,8 +4,8 @@ import { useNavigate } from "react-router-dom";
 import AlertMessage from "@/components/common/AlertMessage";
 import HeaderLayout from "@/components/common/HeaderLayout";
 import PatternForm from "@/components/pattern/PatternForm";
-import gestureMappingStorage from "@/utils/gestureMappingStorage";
-import { gestureStore } from "@/utils/gestureStorage";
+import gestureMappingStorage from "@/utils/mapping/gestureMappingStorage";
+import { gestureStore } from "@/utils/gesture/gestureStorage";
 
 const EditPattern = () => {
   const navigate = useNavigate();

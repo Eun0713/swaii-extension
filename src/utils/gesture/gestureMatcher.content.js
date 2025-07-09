@@ -1,4 +1,7 @@
-import { normalizeAll, calculateSimilarity } from "@/utils/gestureNormalizer";
+import {
+  normalizeAll,
+  calculateSimilarity,
+} from "@/utils/gesture/gestureNormalizer";
 
 const storageArrayStore = ({ key, getId }) => {
   const getAll = async () => {

@@ -1,5 +1,8 @@
-import { normalizeAll, calculateSimilarity } from "@/utils/gestureNormalizer";
-import { gestureStore } from "@/utils/gestureStorage";
+import {
+  normalizeAll,
+  calculateSimilarity,
+} from "@/utils/gesture/gestureNormalizer";
+import { gestureStore } from "@/utils/gesture/gestureStorage";
 
 export const findMatchingGesture = async (rawPoints) => {
   const SIMILARITY_THRESHOLD = 40;

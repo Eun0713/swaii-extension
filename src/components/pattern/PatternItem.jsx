@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import Button from "@/components/common/Button";
 import DeleteConfirmModal from "@/components/common/DeleteConfirmModal";
 import GestureThumbnail from "@/components/gesture/GestureThumbnail";
-import gestureMappingStorage from "@/utils/gestureMappingStorage";
+import gestureMappingStorage from "@/utils/mapping/gestureMappingStorage";
 
 const PatternItem = ({
   SiteIcon,

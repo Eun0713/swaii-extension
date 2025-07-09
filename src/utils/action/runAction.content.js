@@ -1,4 +1,4 @@
-import { siteActionRunners } from "@/utils/siteActionRunners";
+import { siteActionRunners } from "@/utils/action/siteActionRunners";
 
 const SITE_ACTION_LABELS = {
   "Google.com": {
