@@ -42,7 +42,7 @@ const PatternForm = ({
     setOpenDropdown(openDropdown === key ? null : key);
   };
 
-  const handleSubmit = (e) => {
+  const handleSavePattern = (e) => {
     e.preventDefault();
 
     if (!site || !gesture || !action) {
@@ -54,7 +54,7 @@ const PatternForm = ({
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSavePattern}>
       <AlertMessage
         message="사이트, 패턴, 기능을 모두 선택해 주세요."
         type="error"
