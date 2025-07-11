@@ -30,8 +30,8 @@ const PatternItem = ({
       await gestureMappingStorage.remove(mapping);
       onDelete();
       handleCloseDeleteModal();
-    } catch (err) {
-      console.log(err);
+    } catch (error) {
+      console.error(error);
     }
   };
 
