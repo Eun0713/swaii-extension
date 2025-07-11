@@ -38,7 +38,7 @@ const PatternForm = ({
     }, 1500);
   };
 
-  const toggle = (key) => {
+  const toggleDropdown = (key) => {
     setOpenDropdown(openDropdown === key ? null : key);
   };
 
@@ -67,7 +67,7 @@ const PatternForm = ({
           value={site}
           onChange={setSite}
           isOpen={openDropdown === "site"}
-          onToggle={() => toggle("site")}
+          onToggle={() => toggleDropdown("site")}
         />
       </div>
 
@@ -77,7 +77,7 @@ const PatternForm = ({
           value={gesture}
           onChange={setGesture}
           isOpen={openDropdown === "gesture"}
-          onToggle={() => toggle("gesture")}
+          onToggle={() => toggleDropdown("gesture")}
           editingGestureName={initialData.gesture}
           navigateToSettings={() => navigate("/settings")}
         />
@@ -90,7 +90,7 @@ const PatternForm = ({
           value={action}
           onChange={setAction}
           isOpen={openDropdown === "action"}
-          onToggle={() => toggle("action")}
+          onToggle={() => toggleDropdown("action")}
         />
       </div>
 
