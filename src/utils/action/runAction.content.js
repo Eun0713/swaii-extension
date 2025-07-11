@@ -25,8 +25,12 @@ const SITE_ACTION_LABELS = {
 
 export const runAction = (actionName, site) => {
   const actionKey = SITE_ACTION_LABELS?.[site]?.[actionName];
-  if (!actionKey) return;
+  if (!actionKey) {
+    return;
+  }
 
   const action = siteActionRunners[actionKey];
-  if (typeof action === "function") action();
+  if (typeof action === "function") {
+    action();
+  }
 };
