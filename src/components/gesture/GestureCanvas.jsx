@@ -22,10 +22,14 @@ const GestureCanvas = ({ onPathChange, isDisabled }) => {
   };
 
   const startDrawing = (e) => {
-    if (isDisabled) return;
+    if (isDisabled) {
+      return;
+    }
 
     const ctx = getContext();
-    if (!ctx) return;
+    if (!ctx) {
+      return;
+    }
 
     const pos = getMousePos(e);
 
@@ -43,10 +47,14 @@ const GestureCanvas = ({ onPathChange, isDisabled }) => {
   };
 
   const drawPath = (e) => {
-    if (!drawing) return;
+    if (!drawing) {
+      return;
+    }
 
     const ctx = getContext();
-    if (!ctx) return;
+    if (!ctx) {
+      return;
+    }
 
     const pos = getMousePos(e);
     ctx.lineTo(pos.x, pos.y);
@@ -61,7 +69,9 @@ const GestureCanvas = ({ onPathChange, isDisabled }) => {
 
   const clearCanvas = () => {
     const ctx = getContext();
-    if (!ctx) return;
+    if (!ctx) {
+      return;
+    }
 
     ctx.clearRect(0, 0, canvasRef.current.width, canvasRef.current.height);
     setPath([]);
