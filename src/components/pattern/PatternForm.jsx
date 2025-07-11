@@ -8,6 +8,7 @@ import ActionDropdown from "@/components/dropdowns/ActionDropdown";
 import GestureDropdown from "@/components/dropdowns/GestureDropdown";
 import SiteDropdown from "@/components/dropdowns/SiteDropdown";
 import { SITE_ACTION_LABELS } from "@/constants/siteActionLabels";
+import useAlert from "@/hooks/useAlert";
 
 const PatternForm = ({
   initialData = {},
@@ -19,9 +20,10 @@ const PatternForm = ({
   const [gesture, setGesture] = useState(initialData.gesture || "");
   const [action, setAction] = useState(initialData.action || "");
   const [openDropdown, setOpenDropdown] = useState(null);
-  const [showErrorAlert, setShowErrorAlert] = useState(false);
 
   const navigate = useNavigate();
+
+  const { alert, showAlert } = useAlert();
 
   useEffect(() => {
     const validActions = Object.keys(SITE_ACTION_LABELS[site] || {});
@@ -31,11 +33,7 @@ const PatternForm = ({
   }, [action, site]);
 
   const showTemporaryError = () => {
-    setShowErrorAlert(true);
-
-    setTimeout(() => {
-      setShowErrorAlert(false);
-    }, 1500);
+    showAlert("사이트, 패턴, 기능을 모두 선택해 주세요.", "error");
   };
 
   const toggleDropdown = (key) => {
@@ -55,11 +53,7 @@ const PatternForm = ({
 
   return (
     <form onSubmit={handleSavePattern}>
-      <AlertMessage
-        message="사이트, 패턴, 기능을 모두 선택해 주세요."
-        type="error"
-        visible={showErrorAlert}
-      />
+      <AlertMessage {...alert} />
 
       <div className="mt-5">
         <label className="mb-1 block text-sm text-white">사이트 선택</label>

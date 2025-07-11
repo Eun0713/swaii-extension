@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import AlertMessage from "@/components/common/AlertMessage";
 import DeleteConfirmModal from "@/components/common/DeleteConfirmModal";
 import GenericDropdown from "@/components/dropdowns/GenericDropdown";
+import useAlert from "@/hooks/useAlert";
 import { gestureStore } from "@/utils/gesture/gestureStorage";
 import gestureMappingStorage from "@/utils/mapping/gestureMappingStorage";
 
@@ -14,13 +15,9 @@ const GestureDropdown = ({
   ...props
 }) => {
   const [items, setItems] = useState([]);
-  const [alert, setAlert] = useState({
-    message: "",
-    type: "success",
-    visible: false,
-  });
   const [modalOpen, setModalOpen] = useState(false);
   const [gestureToDelete, setGestureToDelete] = useState(null);
+  const { alert, showAlert } = useAlert();
 
   const loadGestureItems = async () => {
     const gestures = await gestureStore.getAll();
@@ -53,15 +50,7 @@ const GestureDropdown = ({
       navigateToSettings();
     }
 
-    setAlert({
-      message: `${item.value} 제스처가 삭제되었습니다.`,
-      type: "error",
-      visible: true,
-    });
-
-    setTimeout(() => {
-      setAlert((prev) => ({ ...prev, visible: false }));
-    }, 1000);
+    showAlert(`${item.value} 제스처가 삭제되었습니다.`, "error");
 
     await loadGestureItems();
   };
@@ -83,11 +72,7 @@ const GestureDropdown = ({
 
   return (
     <>
-      <AlertMessage
-        message={alert.message}
-        type={alert.type}
-        visible={alert.visible}
-      />
+      <AlertMessage {...alert} />
 
       {modalOpen && gestureToDelete && (
         <DeleteConfirmModal
