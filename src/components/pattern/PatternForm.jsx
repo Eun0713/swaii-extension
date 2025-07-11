@@ -38,7 +38,9 @@ const PatternForm = ({
     }, 1500);
   };
 
-  const toggle = (key) => setOpenDropdown(openDropdown === key ? null : key);
+  const toggle = (key) => {
+    setOpenDropdown(openDropdown === key ? null : key);
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
