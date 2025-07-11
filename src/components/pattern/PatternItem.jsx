@@ -17,12 +17,22 @@ const PatternItem = ({
   const navigate = useNavigate();
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const handleOpenModal = () => setIsModalOpen(true);
-  const handleCloseModal = () => setIsModalOpen(false);
+  const handleOpenModal = () => {
+    setIsModalOpen(true);
+  };
+
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+  };
+
   const handleDeleteConfirm = async () => {
-    await gestureMappingStorage.remove(mapping);
-    onDelete();
-    handleCloseModal();
+    try {
+      await gestureMappingStorage.remove(mapping);
+      onDelete();
+      handleCloseModal();
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   const handleEdit = () => {
