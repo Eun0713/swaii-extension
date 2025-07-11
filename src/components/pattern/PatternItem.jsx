@@ -17,25 +17,25 @@ const PatternItem = ({
   const navigate = useNavigate();
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const handleOpenModal = () => {
+  const handleOpenDeleteModal = () => {
     setIsModalOpen(true);
   };
 
-  const handleCloseModal = () => {
+  const handleCloseDeleteModal = () => {
     setIsModalOpen(false);
   };
 
-  const handleDeleteConfirm = async () => {
+  const handleConfirmDeletePattern = async () => {
     try {
       await gestureMappingStorage.remove(mapping);
       onDelete();
-      handleCloseModal();
+      handleCloseDeleteModal();
     } catch (err) {
       console.log(err);
     }
   };
 
-  const handleEdit = () => {
+  const handleEditPattern = () => {
     chrome.storage.local.set({ selectedPattern: mapping }, () => {
       navigate("/settings/edit");
     });
@@ -45,8 +45,8 @@ const PatternItem = ({
     <DeleteConfirmModal
       title="이 패턴을 삭제하시겠습니까?"
       description={`${title}에 연결된 ${description} 기능이 삭제됩니다.`}
-      onCancel={handleCloseModal}
-      onConfirm={handleDeleteConfirm}
+      onCancel={handleOpenDeleteModal}
+      onConfirm={handleConfirmDeletePattern}
     />
   );
 
@@ -72,10 +72,14 @@ const PatternItem = ({
         </div>
 
         <div className="flex gap-2">
-          <Button variant="muted" onClick={handleEdit} size="sm">
+          <Button variant="muted" onClick={handleEditPattern} size="sm">
             수정
           </Button>
-          <Button variant="neutralDanger" onClick={handleOpenModal} size="sm">
+          <Button
+            variant="neutralDanger"
+            onClick={handleOpenDeleteModal}
+            size="sm"
+          >
             삭제
           </Button>
         </div>
