@@ -10,12 +10,12 @@ const Button = ({
   const base = "rounded-md px-4 py-1 font-semibold";
 
   const variants = {
-    default: "bg-white text-black border border-gray-300",
-    primary: "bg-indigo-600 text-white",
-    danger: "bg-red-500 text-white",
-    neutralDanger: "bg-zinc-600 text-white",
-    muted: "bg-slate-900 text-white",
-    kakao: "bg-[#FEE500] text-black",
+    default: "bg-white text-black border border-gray-300 hover:brightness-90",
+    primary: "bg-indigo-600 text-white hover:bg-indigo-700",
+    danger: "bg-red-500 text-white hover:bg-red-600",
+    neutralDanger: "bg-zinc-600 text-white hover:bg-zinc-700",
+    muted: "bg-slate-900 text-white hover:bg-slate-800",
+    kakao: "bg-[#FEE500] text-black hover:brightness-90",
   };
 
   const sizes = {
