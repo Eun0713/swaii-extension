@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 
 import GestureCircleCursor from "@/assets/gestures/circle-gesture.svg";
-import KakaoIcon from "@/assets/logos/logo-kakao.svg?react";
+import GoogleIcon from "@/assets/logos/logo-google-login.svg?react";
 import LogoSwaii from "@/assets/logos/logo-swaii.svg?react";
 import Button from "@/components/common/Button";
 import { gestureItems } from "@/constants/gestureItems";
@@ -38,10 +38,10 @@ const EntryPoint = () => {
       </ul>
 
       <div className="absolute bottom-5 right-5 flex gap-3">
-        <Button variant="kakao" size="lg">
+        <Button variant="google" size="lg">
           <div className="flex items-center">
-            <KakaoIcon className="mr-2 h-6 w-6" />
-            카카오 로그인
+            <GoogleIcon className="mr-2 h-6 w-6" />
+            구글 로그인
           </div>
         </Button>
         <Button
