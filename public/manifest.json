@@ -6,13 +6,24 @@
   "icons": {
     "128": "icon-128.png"
   },
-  "permissions": ["storage", "activeTab"],
+  "permissions": [
+    "identity",
+    "storage",
+    "activeTab"
+  ],
   "host_permissions": [
     "https://www.notion.so/*",
     "https://www.youtube.com/*",
     "https://chrome.google.com/*",
     "https://www.google.com/*"
   ],
+  "oauth2": {
+    "client_id":"827087380066-sl0dfcfj0li36j8b4gq38i1v8hvh8i36.apps.googleusercontent.com",
+    "scopes": [
+      "https://www.googleapis.com/auth/userinfo.profile",
+      "https://www.googleapis.com/auth/userinfo.email"
+    ]
+  },
   "background": {
     "service_worker": "background.js"
   },
