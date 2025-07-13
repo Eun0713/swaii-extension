@@ -5,9 +5,19 @@ import GoogleIcon from "@/assets/logos/logo-google-login.svg?react";
 import LogoSwaii from "@/assets/logos/logo-swaii.svg?react";
 import Button from "@/components/common/Button";
 import { gestureItems } from "@/constants/gestureItems";
+import { requestGoogleLogin } from "@/utils/auth/requestGoogleLogin";
 
 const EntryPoint = () => {
   const navigate = useNavigate();
+
+  const handleGoogleLogin = async () => {
+    try {
+      await requestGoogleLogin();
+      navigate("/settings");
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
   return (
     <div className="relative h-[480px] w-[640px] overflow-hidden bg-slate-900 p-6 text-white">
@@ -38,7 +48,7 @@ const EntryPoint = () => {
       </ul>
 
       <div className="absolute bottom-5 right-5 flex gap-3">
-        <Button variant="google" size="lg">
+        <Button variant="google" size="lg" onClick={handleGoogleLogin}>
           <div className="flex items-center">
             <GoogleIcon className="mr-2 h-6 w-6" />
             구글 로그인
