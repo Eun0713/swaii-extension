@@ -8,6 +8,8 @@ import GestureCanvas from "@/components/gesture/GestureCanvas";
 import GestureInput from "@/components/gesture/GestureInput";
 import useAlert from "@/hooks/useAlert";
 import { gestureStore } from "@/utils/gesture/gestureStorage";
+import createUserGestureStore from "@/utils/gesture/userGestureStorage";
+import { saveGestureToServer } from "@/utils/services/gestureService";
 
 const CustomGesture = () => {
   const navigate = useNavigate();
@@ -24,15 +26,31 @@ const CustomGesture = () => {
       return showAlert("제스처를 충분히 그려주세요.", "error");
     }
 
-    const success = await gestureStore.save({
+    const gestureData = {
       name,
       type: "custom",
       points: path,
-    });
+    };
+
+    const { userEmail } = await chrome.storage.local.get(["userEmail"]);
+    const gestureStorage = userEmail
+      ? createUserGestureStore(userEmail)
+      : gestureStore;
+
+    const success = await gestureStorage.save(gestureData);
 
     if (!success) {
       showAlert("이미 존재하는 이름입니다.", "error");
       return;
+    }
+
+    if (userEmail) {
+      try {
+        await saveGestureToServer(userEmail, gestureData);
+        await gestureStorage.save(gestureData);
+      } catch (error) {
+        console.error(error);
+      }
     }
 
     showAlert("제스처가 저장되었습니다.");
