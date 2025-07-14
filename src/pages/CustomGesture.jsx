@@ -7,9 +7,9 @@ import GestureButtons from "@/components/gesture/GestureButtons";
 import GestureCanvas from "@/components/gesture/GestureCanvas";
 import GestureInput from "@/components/gesture/GestureInput";
 import useAlert from "@/hooks/useAlert";
+import { saveUserGesture } from "@/services/gestureService";
 import { gestureStore } from "@/utils/gesture/gestureStorage";
 import createUserGestureStore from "@/utils/gesture/userGestureStorage";
-import { saveGestureToServer } from "@/utils/services/gestureService";
 
 const CustomGesture = () => {
   const navigate = useNavigate();
@@ -46,7 +46,7 @@ const CustomGesture = () => {
 
     if (userEmail) {
       try {
-        await saveGestureToServer(userEmail, gestureData);
+        await saveUserGesture(userEmail, gestureData);
         await gestureStorage.save(gestureData);
       } catch (error) {
         console.error(error);
