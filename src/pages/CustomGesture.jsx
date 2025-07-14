@@ -8,8 +8,7 @@ import GestureCanvas from "@/components/gesture/GestureCanvas";
 import GestureInput from "@/components/gesture/GestureInput";
 import useAlert from "@/hooks/useAlert";
 import { saveUserGesture } from "@/services/gestureService";
-import { gestureStore } from "@/utils/gesture/gestureStorage";
-import createUserGestureStore from "@/utils/gesture/userGestureStorage";
+import selectGestureStore from "@/utils/gesture/selectGestureStore";
 
 const CustomGesture = () => {
   const navigate = useNavigate();
@@ -17,13 +16,23 @@ const CustomGesture = () => {
   const [path, setPath] = useState([]);
   const { alert, showAlert } = useAlert();
 
-  const handleSave = async () => {
+  const validateGestureInput = (name, path) => {
     if (!name.trim()) {
-      return showAlert("제스처 이름을 입력해주세요.", "error");
+      return "제스처 이름을 입력해주세요.";
     }
 
     if (path.length < 5) {
-      return showAlert("제스처를 충분히 그려주세요.", "error");
+      return "제스처를 충분히 그려주세요.";
+    }
+
+    return null;
+  };
+
+  const handleSave = async () => {
+    const errorMessage = validateGestureInput(name, path);
+    if (errorMessage) {
+      showAlert(errorMessage, "error");
+      return;
     }
 
     const gestureData = {
@@ -32,10 +41,7 @@ const CustomGesture = () => {
       points: path,
     };
 
-    const { userEmail } = await chrome.storage.local.get(["userEmail"]);
-    const gestureStorage = userEmail
-      ? createUserGestureStore(userEmail)
-      : gestureStore;
+    const { store: gestureStorage, userEmail } = await selectGestureStore();
 
     const success = await gestureStorage.save(gestureData);
 
