@@ -1,18 +1,18 @@
 import { useNavigate } from "react-router-dom";
 
+import { initializeUserSession } from "@/app/initializeUserSession";
 import GestureCircleCursor from "@/assets/gestures/circle-gesture.svg";
 import GoogleIcon from "@/assets/logos/logo-google-login.svg?react";
 import LogoSwaii from "@/assets/logos/logo-swaii.svg?react";
 import Button from "@/components/common/Button";
 import { gestureItems } from "@/constants/gestureItems";
-import { loginAndLoadUserGestures } from "@/utils/auth/loginAndLoadUserGestures";
 
 const EntryPoint = () => {
   const navigate = useNavigate();
 
   const handleGoogleLogin = async () => {
     try {
-      await loginAndLoadUserGestures();
+      await initializeUserSession();
       navigate("/settings");
     } catch (error) {
       console.error(error);
