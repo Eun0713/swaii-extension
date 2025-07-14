@@ -5,26 +5,14 @@ import GoogleIcon from "@/assets/logos/logo-google-login.svg?react";
 import LogoSwaii from "@/assets/logos/logo-swaii.svg?react";
 import Button from "@/components/common/Button";
 import { gestureItems } from "@/constants/gestureItems";
-import { requestGoogleLogin } from "@/utils/auth/requestGoogleLogin";
-import createUserGestureStore from "@/utils/gesture/userGestureStorage";
+import { loginAndLoadUserGestures } from "@/utils/auth/loginAndLoadUserGestures";
 
 const EntryPoint = () => {
   const navigate = useNavigate();
 
   const handleGoogleLogin = async () => {
     try {
-      const token = await requestGoogleLogin();
-
-      const res = await fetch("https://www.googleapis.com/oauth2/v2/userinfo", {
-        headers: { Authorization: `Bearer ${token}` },
-      });
-
-      const userInfo = await res.json();
-
-      const gestureStore = createUserGestureStore(userInfo.email);
-      const userGestures = await gestureStore.getAll();
-
-      chrome.storage.local.set({ userEmail: userInfo.email });
+      await loginAndLoadUserGestures();
       navigate("/settings");
     } catch (error) {
       console.error(error);
