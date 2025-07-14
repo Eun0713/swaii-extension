@@ -1,8 +1,8 @@
-import { API_BASE_URL } from "@/constants/api";
+import { getUserGestures } from "@/services/gestureService";
 import { requestGoogleLogin } from "@/utils/auth/requestGoogleLogin";
 import createUserGestureStore from "@/utils/gesture/userGestureStorage";
 
-export const loginAndLoadUserGestures = async () => {
+export const initializeUserSession = async () => {
   const token = await requestGoogleLogin();
 
   const res = await fetch("https://www.googleapis.com/oauth2/v2/userinfo", {
@@ -12,12 +12,7 @@ export const loginAndLoadUserGestures = async () => {
   const userInfo = await res.json();
   const userEmail = userInfo.email;
 
-  const response = await fetch(`${API_BASE_URL}/gestures?email=${userEmail}`);
-  const { data: gestureList, message: serverMessage } = await response.json();
-
-  if (!response.ok) {
-    throw new Error(serverMessage);
-  }
+  const gestureList = await getUserGestures(userEmail);
 
   const userGestureStore = createUserGestureStore(userEmail);
 
