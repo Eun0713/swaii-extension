@@ -7,7 +7,7 @@ import useAlert from "@/hooks/useAlert";
 import { deleteUserGesture } from "@/services/gestureService";
 import { gestureStore } from "@/utils/gesture/gestureStorage";
 import selectGestureStore from "@/utils/gesture/selectGestureStore";
-import gestureMappingStorage from "@/utils/mapping/gestureMappingStorage";
+import selectMappingStore from "@/utils/mapping/selectMappingStore";
 
 const GestureDropdown = ({
   value,
@@ -61,11 +61,13 @@ const GestureDropdown = ({
       }
     }
 
-    const mappings = await gestureMappingStorage.getAll();
+    const { store: mappingStore } = await selectMappingStore();
+
+    const mappings = await mappingStore.getAll();
     const updatedMappings = mappings.filter(
       (mapping) => mapping.gesture !== item.value
     );
-    await gestureMappingStorage.setAll(updatedMappings);
+    await mappingStore.setAll(updatedMappings);
 
     if (item.value === value) {
       onChange("");
@@ -82,8 +84,8 @@ const GestureDropdown = ({
 
   const handleDelete = async (e, item) => {
     e.stopPropagation();
-
-    const mappings = await gestureMappingStorage.getAll();
+    const { store: mappingStore } = await selectMappingStore();
+    const mappings = await mappingStore.getAll();
     const isMapped = mappings.some((mapping) => mapping.gesture === item.value);
 
     if (isMapped) {

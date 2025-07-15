@@ -6,7 +6,7 @@ import HeaderLayout from "@/components/common/HeaderLayout";
 import PatternForm from "@/components/pattern/PatternForm";
 import useAlert from "@/hooks/useAlert";
 import selectGestureStore from "@/utils/gesture/selectGestureStore";
-import gestureMappingStorage from "@/utils/mapping/gestureMappingStorage";
+import selectMappingStore from "@/utils/mapping/selectMappingStore";
 
 const EditPattern = () => {
   const navigate = useNavigate();
@@ -30,21 +30,20 @@ const EditPattern = () => {
 
   const handleSubmit = async (updatedMapping) => {
     try {
+      const { store: mappingStore } = await selectMappingStore();
+      const { store: gestureStore } = await selectGestureStore();
+
       const mappingChanged =
         initialData.site !== updatedMapping.site ||
         initialData.gesture !== updatedMapping.gesture ||
         initialData.action !== updatedMapping.action;
 
-      if (
-        mappingChanged &&
-        (await gestureMappingStorage.hasItem(updatedMapping))
-      ) {
+      if (mappingChanged && (await mappingStore.hasItem(updatedMapping))) {
         showAlert("이미 동일한 사이트와 패턴 조합이 존재합니다.", "error");
         return;
       }
 
-      const { store } = await selectGestureStore();
-      const allGestures = await store.getAll();
+      const allGestures = await gestureStore.getAll();
       const matchedGestureData = allGestures.find(
         (gesture) => gesture.name === updatedMapping.gesture
       );
@@ -54,7 +53,7 @@ const EditPattern = () => {
         points: matchedGestureData?.points || [],
       };
 
-      await gestureMappingStorage.update(initialData, updatedMappingWithPoints);
+      await mappingStore.update(initialData, updatedMappingWithPoints);
 
       showAlert("저장되었습니다.");
 

@@ -1,14 +1,15 @@
 import { useEffect, useState } from "react";
 
 import PatternItem from "@/components/pattern/PatternItem";
-import gestureMappingStorage from "@/utils/mapping/gestureMappingStorage";
+import selectMappingStore from "@/utils/mapping/selectMappingStore";
 import { getSiteIcon, getGestureIcon } from "@/utils/ui/iconMapper";
 
 const PatternList = () => {
   const [patternList, setPatternList] = useState([]);
 
   const loadPatternList = async () => {
-    const list = await gestureMappingStorage.getAll();
+    const { store } = await selectMappingStore();
+    const list = await store.getAll();
     setPatternList(list);
   };
 
