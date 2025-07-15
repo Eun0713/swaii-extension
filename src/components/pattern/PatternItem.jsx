@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import Button from "@/components/common/Button";
 import DeleteConfirmModal from "@/components/common/DeleteConfirmModal";
 import GestureThumbnail from "@/components/gesture/GestureThumbnail";
+import { deleteUserMapping } from "@/services/mappingService";
 import selectMappingStore from "@/utils/mapping/selectMappingStore";
 
 const PatternItem = ({
@@ -27,9 +28,13 @@ const PatternItem = ({
 
   const handleConfirmDeletePattern = async () => {
     try {
-      const { store } = await selectMappingStore();
+      const { store, userEmail } = await selectMappingStore();
 
       await store.remove(mapping);
+
+      if (userEmail) {
+        await deleteUserMapping(userEmail, mapping);
+      }
 
       onDelete();
       handleCloseDeleteModal();

@@ -4,6 +4,7 @@ import AlertMessage from "@/components/common/AlertMessage";
 import HeaderLayout from "@/components/common/HeaderLayout";
 import PatternForm from "@/components/pattern/PatternForm";
 import useAlert from "@/hooks/useAlert";
+import { saveUserMapping } from "@/services/mappingService";
 import selectGestureStore from "@/utils/gesture/selectGestureStore";
 import selectMappingStore from "@/utils/mapping/selectMappingStore";
 
@@ -18,7 +19,7 @@ const AddPattern = () => {
   const handleSubmit = async (mapping) => {
     try {
       const { store: gestureStore } = await selectGestureStore();
-      const { store: mappingStore } = await selectMappingStore();
+      const { store: mappingStore, userEmail } = await selectMappingStore();
 
       const allGestures = await gestureStore.getAll();
       const matchedGestureData = allGestures.find(
@@ -36,6 +37,10 @@ const AddPattern = () => {
       if (!success) {
         showAlert("이미 동일한 사이트와 패턴 조합이 존재합니다.", "error");
         return;
+      }
+
+      if (userEmail) {
+        await saveUserMapping(userEmail, mappingWithPoints);
       }
 
       showAlert("저장되었습니다.");
