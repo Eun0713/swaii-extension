@@ -4,6 +4,7 @@ import AlertMessage from "@/components/common/AlertMessage";
 import DeleteConfirmModal from "@/components/common/DeleteConfirmModal";
 import GenericDropdown from "@/components/dropdowns/GenericDropdown";
 import useAlert from "@/hooks/useAlert";
+import { deleteUserGesture } from "@/services/gestureService";
 import { gestureStore } from "@/utils/gesture/gestureStorage";
 import selectGestureStore from "@/utils/gesture/selectGestureStore";
 import gestureMappingStorage from "@/utils/mapping/gestureMappingStorage";
@@ -48,8 +49,17 @@ const GestureDropdown = ({
   }, []);
 
   const deleteGesture = async (item) => {
-    const { store } = await selectGestureStore();
+    const { store, userEmail } = await selectGestureStore();
+
     await store.remove({ name: item.value, type: "custom" });
+
+    if (userEmail) {
+      try {
+        await deleteUserGesture(userEmail, item.value);
+      } catch (error) {
+        console.error(error);
+      }
+    }
 
     const mappings = await gestureMappingStorage.getAll();
     const updatedMappings = mappings.filter(
