@@ -5,7 +5,7 @@ import AlertMessage from "@/components/common/AlertMessage";
 import HeaderLayout from "@/components/common/HeaderLayout";
 import PatternForm from "@/components/pattern/PatternForm";
 import useAlert from "@/hooks/useAlert";
-import { gestureStore } from "@/utils/gesture/gestureStorage";
+import selectGestureStore from "@/utils/gesture/selectGestureStore";
 import gestureMappingStorage from "@/utils/mapping/gestureMappingStorage";
 
 const EditPattern = () => {
@@ -43,8 +43,10 @@ const EditPattern = () => {
         return;
       }
 
-      const matchedGestureData = await gestureStore.getGestureByName(
-        updatedMapping.gesture
+      const { store } = await selectGestureStore();
+      const allGestures = await store.getAll();
+      const matchedGestureData = allGestures.find(
+        (gesture) => gesture.name === updatedMapping.gesture
       );
 
       const updatedMappingWithPoints = {

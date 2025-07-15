@@ -4,7 +4,7 @@ import AlertMessage from "@/components/common/AlertMessage";
 import HeaderLayout from "@/components/common/HeaderLayout";
 import PatternForm from "@/components/pattern/PatternForm";
 import useAlert from "@/hooks/useAlert";
-import { gestureStore } from "@/utils/gesture/gestureStorage";
+import selectGestureStore from "@/utils/gesture/selectGestureStore";
 import gestureMappingStorage from "@/utils/mapping/gestureMappingStorage";
 
 const AddPattern = () => {
@@ -17,8 +17,10 @@ const AddPattern = () => {
 
   const handleSubmit = async (mapping) => {
     try {
-      const matchedGestureData = await gestureStore.getGestureByName(
-        mapping.gesture
+      const { store } = await selectGestureStore();
+      const allGestures = await store.getAll();
+      const matchedGestureData = allGestures.find(
+        (gesture) => gesture.name === mapping.gesture
       );
 
       const mappingWithPoints = {
