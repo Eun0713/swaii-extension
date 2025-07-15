@@ -5,6 +5,7 @@ import DeleteConfirmModal from "@/components/common/DeleteConfirmModal";
 import GenericDropdown from "@/components/dropdowns/GenericDropdown";
 import useAlert from "@/hooks/useAlert";
 import { gestureStore } from "@/utils/gesture/gestureStorage";
+import selectGestureStore from "@/utils/gesture/selectGestureStore";
 import gestureMappingStorage from "@/utils/mapping/gestureMappingStorage";
 
 const GestureDropdown = ({
@@ -20,12 +21,19 @@ const GestureDropdown = ({
   const { alert, showAlert } = useAlert();
 
   const loadGestureItems = async () => {
-    const gestures = await gestureStore.getAll();
-    const gestureItems = gestures.map((gesture) => ({
+    const { store } = await selectGestureStore();
+
+    const defaultGestures = await gestureStore.getAll();
+    const userCustomGestures = await store.getAll();
+
+    const allGestures = [...defaultGestures, ...userCustomGestures];
+
+    const gestureItems = allGestures.map((gesture) => ({
       label: gesture.name + (gesture.type === "custom" ? " (사용자)" : ""),
       value: gesture.name,
       type: gesture.type,
     }));
+
     setItems(gestureItems);
   };
 
@@ -34,7 +42,8 @@ const GestureDropdown = ({
   }, []);
 
   const deleteGesture = async (item) => {
-    await gestureStore.remove({ name: item.value, type: "custom" });
+    const { store } = await selectGestureStore();
+    await store.remove({ name: item.value, type: "custom" });
 
     const mappings = await gestureMappingStorage.getAll();
     const updatedMappings = mappings.filter(
