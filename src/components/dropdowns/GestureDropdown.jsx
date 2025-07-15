@@ -21,12 +21,18 @@ const GestureDropdown = ({
   const { alert, showAlert } = useAlert();
 
   const loadGestureItems = async () => {
-    const { store } = await selectGestureStore();
+    const { store, userEmail } = await selectGestureStore();
 
-    const defaultGestures = await gestureStore.getAll();
-    const userCustomGestures = await store.getAll();
+    let allGestures = [];
 
-    const allGestures = [...defaultGestures, ...userCustomGestures];
+    if (userEmail) {
+      const defaultGestures = await gestureStore.getAll();
+      const userCustomGestures = await store.getAll();
+
+      allGestures = [...defaultGestures, ...userCustomGestures];
+    } else {
+      allGestures = await gestureStore.getAll();
+    }
 
     const gestureItems = allGestures.map((gesture) => ({
       label: gesture.name + (gesture.type === "custom" ? " (사용자)" : ""),
