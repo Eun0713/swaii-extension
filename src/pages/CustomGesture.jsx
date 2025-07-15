@@ -53,7 +53,6 @@ const CustomGesture = () => {
     if (userEmail) {
       try {
         await saveUserGesture(userEmail, gestureData);
-        await gestureStorage.save(gestureData);
       } catch (error) {
         console.error(error);
       }
