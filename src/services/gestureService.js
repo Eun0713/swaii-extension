@@ -1,12 +1,5 @@
 import { API_BASE_URL } from "@/constants/api";
-
-const handleApiResponse = async (response) => {
-  const responseData = await response.json();
-  if (!response.ok) {
-    throw new Error(responseData.message || "서버 요청 실패");
-  }
-  return responseData.data;
-};
+import handleApiResponse from "@/utils/api/apiResponse";
 
 export const getUserGestures = async (email) => {
   const response = await fetch(`${API_BASE_URL}/gestures?email=${email}`);
