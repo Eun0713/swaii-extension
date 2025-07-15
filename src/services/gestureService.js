@@ -24,3 +24,15 @@ export const saveUserGesture = async (email, gesture) => {
 
   await handleApiResponse(response);
 };
+
+export const deleteUserGesture = async (email, gestureName) => {
+  const response = await fetch(`${API_BASE_URL}/gestures`, {
+    method: "DELETE",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ email, gestureName }),
+  });
+
+  await handleApiResponse(response);
+};
