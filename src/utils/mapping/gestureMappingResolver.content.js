@@ -36,12 +36,24 @@ const gestureMappingStorage = storageArrayStore({
   getId: (mapping) => `${mapping.site}-${mapping.gesture}-${mapping.action}`,
 });
 
+const userMappingStorage = (email) => {
+  return storageArrayStore({
+    key: `mappings_${email}`,
+    getId: (mapping) => `${mapping.site}-${mapping.gesture}-${mapping.action}`,
+  });
+};
+
 export const getMatchedMapping = async (matchedGestureName) => {
   const currentHost = window.location.hostname
     .replace(/^www\./, "")
     .toLowerCase();
 
-  const mappings = await gestureMappingStorage.getAll();
+  const { userEmail } = await chrome.storage.local.get("userEmail");
+  const store = userEmail
+    ? userMappingStorage(userEmail)
+    : gestureMappingStorage;
+
+  const mappings = await store.getAll();
 
   for (const mapping of mappings) {
     const isGestureMatch = mapping.gesture === matchedGestureName;
