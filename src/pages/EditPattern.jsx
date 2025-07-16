@@ -5,6 +5,7 @@ import AlertMessage from "@/components/common/AlertMessage";
 import HeaderLayout from "@/components/common/HeaderLayout";
 import PatternForm from "@/components/pattern/PatternForm";
 import useAlert from "@/hooks/useAlert";
+import { updateUserMapping } from "@/services/mappingService";
 import selectGestureStore from "@/utils/gesture/selectGestureStore";
 import selectMappingStore from "@/utils/mapping/selectMappingStore";
 
@@ -30,7 +31,7 @@ const EditPattern = () => {
 
   const handleSubmit = async (updatedMapping) => {
     try {
-      const { store: mappingStore } = await selectMappingStore();
+      const { store: mappingStore, userEmail } = await selectMappingStore();
       const { store: gestureStore } = await selectGestureStore();
 
       const mappingChanged =
@@ -53,7 +54,16 @@ const EditPattern = () => {
         points: matchedGestureData?.points || [],
       };
 
-      await mappingStore.update(initialData, updatedMappingWithPoints);
+      if (userEmail) {
+        await updateUserMapping(
+          userEmail,
+          initialData,
+          updatedMappingWithPoints
+        );
+        await mappingStore.update(initialData, updatedMappingWithPoints);
+      } else {
+        await mappingStore.update(initialData, updatedMappingWithPoints);
+      }
 
       showAlert("저장되었습니다.");
 

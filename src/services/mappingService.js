@@ -29,3 +29,21 @@ export const deleteUserMapping = async (email, mapping) => {
 
   await handleApiResponse(response);
 };
+
+export const updateUserMapping = async (email, original, updated) => {
+  const response = await fetch(`${API_BASE_URL}/mappings`, {
+    method: "PATCH",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      email,
+      site: original.site,
+      gesture: original.gesture,
+      action: original.action,
+      updated,
+    }),
+  });
+
+  await handleApiResponse(response);
+};
