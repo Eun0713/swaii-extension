@@ -17,10 +17,9 @@
   </p>
 </div>
 
-
 <br>
 
-# ✨ 기획 배경
+# 💭 기획 배경
 > **단축키는 빠르지만, 왜 매번 외우긴 어려울까요?**
 
 사이트마다 단축키가 달라 익숙해지기도 전에 다시 찾아봐야 하는 경우가 많습니다.
@@ -39,3 +38,27 @@
 
 단순히 기능을 설정하는 도구가 아니라,  
 **반복되는 작업 흐름을 '내 손에 맞게' 설계하는 경험**을 제공하는 것이 Swaii의 핵심입니다.
+
+<br>
+
+# ⚙️ 기술 스택
+
+### 클라이언트
+
+| 기술 | 도입 이유 |
+|------|-----------|
+| ![JavaScript](https://img.shields.io/badge/JavaScript-FFD93E.svg?style=for-the-badge&logo=JavaScript&logoColor=white) | 확장 기능과 UI, 서버 로직까지 전반을 구성하는 핵심 언어 |
+| ![React](https://img.shields.io/badge/React-61DAFB?style=for-the-badge&logo=React&logoColor=002157) | 다양한 설정 페이지와 제스처 관련 UI를 컴포넌트 단위로 유연하게 관리 |
+| ![React Router](https://img.shields.io/badge/reactrouter-CA4245?style=for-the-badge&logo=reactrouter&logoColor=white) | SPA에서 라우팅을 처리하며, 페이지 전환 흐름을 관리 |
+| ![tailwindcss](https://img.shields.io/badge/tailwindcss-1FA3EC?style=for-the-badge&logo=tailwindcss&logoColor=white) | 클래스 기반의 유틸리티 CSS 프레임워크로 빠른 UI 구현 |
+| ![Vite](https://img.shields.io/badge/Vite-646CFF?style=for-the-badge&logo=Vite&logoColor=white) | 빠른 번들링 및 개발 환경 |
+| ![Chrome Extension](https://img.shields.io/badge/Chrome_Extension-4285F4?style=for-the-badge&logo=Google-Chrome&logoColor=white) |  Manifest V3 기반으로 브라우저 상에서 동작하는 확장 프로그램 구성 |
+
+### 서버
+
+| 기술 | 도입 이유 |
+|------|-----------|
+| ![Node.js](https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=Node.js&logoColor=white) | 크롬 확장과 동일한 자바스크립트 환경에서 빠르게 서버를 구축 |
+| ![Express](https://img.shields.io/badge/Express-000000?style=for-the-badge&logo=express&logoColor=white) | REST API 서버 구성에 최적화되어 있어, 사용자 제스처·매핑 정보를 빠르게 처리 |
+| ![Supabase](https://img.shields.io/badge/Supabase-3ECF8E?style=for-the-badge&logo=supabase&logoColor=white) | 로그인한 사용자의 제스처 및 매핑 데이터를 저장하고, 기기 간 동기화를 지원 |
+
