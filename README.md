@@ -1,12 +1,13 @@
-# React + Vite
+# 🌀 Swaii
+**사이트마다 다른 단축키, 외우기 불편하지 않나요?**
+**Swaii**는 자주 쓰는 웹 동작을 **직접 만든 마우스 제스처로 통일**할 수 있는
+개인 맞춤형 **Chrome 확장 프로그램**입니다.
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+탭 이동, 새 페이지 열기, 스크롤 등 반복되는 작업을
+사이트마다 다르게 외우지 않아도,
+손에 익은 제스처 한 번으로 빠르게 실행할 수 있습니다.
 
-Currently, two official plugins are available:
+사용자가 직접 자신만의 제스처를 만들고, 각 사이트에 원하는 동작을 연결할 수 있어
+**나만의 웹 사용 흐름**을 설계하듯 구성할 수 있습니다.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+> 마우스가 곧 당신의 단축키가 됩니다.
