@@ -138,3 +138,49 @@
 | ![Express](https://img.shields.io/badge/Express-000000?style=for-the-badge&logo=express&logoColor=white) | REST API 서버 구성에 최적화되어 있어, 사용자 제스처·매핑 정보를 빠르게 처리 |
 | ![Supabase](https://img.shields.io/badge/Supabase-3ECF8E?style=for-the-badge&logo=supabase&logoColor=white) | 로그인한 사용자의 제스처 및 매핑 데이터를 저장하고, 기기 간 동기화를 지원 |
 
+<br>
+
+# 💥 트러블 슈팅
+## 1. 제스처 궤적이 이어져 그려지는 문제
+> **문제**: <br>
+> 마우스로 제스처를 그린 뒤 새로운 제스처를 그리려 할 때,  
+> 이전 제스처의 궤적과 새 제스처가 **연결되어 그려지는 문제**가 발생했습니다.
+
+### 문제 상황
+- 마우스로 제스처를 그리고 마우스를 뗀 뒤, 새로운 위치에서 다시 제스처를 시작했더니, 
+  **이전 제스처의 마지막 점과 연결된 선이 이어서 그려지는 현상**이 나타났습니다.
+<details>
+<summary>🎬 문제 발생 장면 보기</summary>
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/72681c23-8a05-4b23-84b3-acb6386cda29" alt="제스처 궤적 이어짐 문제 영상" width="600" />
+</p>
+</details>
+
+---
+
+### 잘못된 해결 시도
+```js
+if (points.length === 1) {
+  ctx.beginPath();
+  ctx.moveTo(x, y);
+} else {
+  ctx.lineTo(x, y);
+  ctx.stroke();
+}
+```
+- `points.length === 1`일 때만 `beginPath()`를 호출하고 이후에는 `lineTo()`로 이어서 그리는 방식이었습니다.
+
+하지만 이 방식은 다음과 같은 문제가 있었습니다:
+| 항목                          | 설명                                   |
+| --------------------------- | ------------------------------------ |
+| `ctx`는 이전 `moveTo()` 상태를 기억 | `beginPath()`가 호출되지 않으면 선이 물리적으로 이어짐 |
+| `canvas`가 제거되지 않음           | DOM에 계속 존재하여 시각적 상태가 남음              |
+| `ctx`가 초기화되지 않음             | 메모리 상에서 이전 선 상태를 유지                  |
+
+<br>
+
+> **🧪 실제 흐름 예시**
+> 1. 제스처 A → 잘 그려짐  
+> 2. fadeOutCanvas() → 시각적으로 사라짐  
+> 3. canvas와 ctx는 여전히 존재  
+> 4. 제스처 B → A와 B가 이어진 선으로 그려짐
