@@ -19,6 +19,17 @@
 
 <br>
 
+# 🧾 목차
+
+1. [💭 기획 배경](#-기획-배경)
+2. [⛓ 주요 기능 흐름](#-주요-기능-흐름)
+   - [① 커스텀 제스처 생성](#-커스텀-제스처-생성)
+   - [② 동작 매핑 및 기본 제스처 제공](#-동작-매핑-및-기본-제스처-제공)
+   - [③ 매핑된 제스처 실행](#-매핑된-제스처-실행)
+3. [⚙️ 기술 스택](#️-기술-스택)
+
+<br>
+
 # 💭 기획 배경
 > **단축키는 빠르지만, 왜 매번 외우긴 어려울까요?**
 
@@ -41,7 +52,7 @@
 
 <br>
 
-# 👀 기능 미리보기
+# ⛓ 주요 기능 흐름
 
 ### ① 커스텀 제스처 생성
 <details><summary>📸 미리보기</summary>
@@ -85,9 +96,19 @@
 <details><summary>📸 미리보기</summary>
 
 <p align="center">
-  <img src="https://github.com/user-attachments/assets/8b7705de-9d4e-4429-892d-452325334b63" width="400" valign="middle" />
-  <img width="40" height="28" alt="Vector (3)" src="https://github.com/user-attachments/assets/bbb3fcc4-7a79-4a1e-93c0-91d8bf93fa5c" />
-  <img src="https://github.com/user-attachments/assets/f2dc2719-5e1c-4c2e-b2ba-a21ef133b8fc" width="400" valign="middle" />
+  <strong>① 제스처 입력</strong><br />
+  <img src="https://github.com/user-attachments/assets/8b7705de-9d4e-4429-892d-452325334b63" width="500" />
+</p>
+
+<p align="center">
+  &nbsp;<br />
+  <img width="28" height="46" alt="Arrow" src="https://github.com/user-attachments/assets/a8034ed9-db59-4daa-a048-99fb54e66ae8" />
+  <br />&nbsp;
+</p>
+
+<p align="center">
+  <strong>② 동작 실행</strong><br />
+  <img src="https://github.com/user-attachments/assets/f2dc2719-5e1c-4c2e-b2ba-a21ef133b8fc" width="500" />
 </p>
 </details>
 
