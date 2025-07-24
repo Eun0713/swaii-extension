@@ -150,7 +150,7 @@
 - 마우스로 제스처를 그리고 마우스를 뗀 뒤, 새로운 위치에서 다시 제스처를 시작했더니, 
   **이전 제스처의 마지막 점과 연결된 선이 이어서 그려지는 현상**이 나타났습니다.
 <details>
-<summary>🎬 문제 발생 장면 보기</summary>
+<summary>📽️ <strong>문제 발생 장면 보기</strong></summary>
 <p align="center">
   <img src="https://github.com/user-attachments/assets/72681c23-8a05-4b23-84b3-acb6386cda29" alt="제스처 궤적 이어짐 문제 영상" width="600" />
 </p>
@@ -179,8 +179,39 @@ if (points.length === 1) {
 
 <br>
 
-> **🧪 실제 흐름 예시**
+> **📌 실제 흐름 예시**
 > 1. 제스처 A → 잘 그려짐  
 > 2. fadeOutCanvas() → 시각적으로 사라짐  
 > 3. canvas와 ctx는 여전히 존재  
 > 4. 제스처 B → A와 B가 이어진 선으로 그려짐
+
+---
+
+### 해결 방안 및 구현 과정
+
+1. `drawOnCanvas()` 내부에서 항상 새로운 path를 시작
+
+```js
+ctx.beginPath(); // 항상 새로운 경로로 초기화
+const [prevX, prevY] = points[points.length - 2] || [x, y];
+ctx.moveTo(prevX, prevY);
+ctx.lineTo(x, y);
+ctx.stroke();
+```
+
+> `ctx.beginPath()`는 기존에 그려지던 선 경로를 끊고, 새롭게 그리기를 시작하게 만드는 명령입니다.
+- 만약 `ctx.beginPath()`를 생략하면 브라우저는 이전에 지정한 선의 시작점 (`moveTo`)을 기억하고, 새로 그리는 선과 자동으로 이어서 그려버립니다.
+  ⮕ 이로 인해, 제스처를 새로 시작했을 때 이전 궤적과 붙어서 그려지는 문제가 발생합니다.
+
+<br>
+
+> [!NOTE]
+> #### 왜 `[prevX, prevY]`를 쓰나요?
+> ```js
+> const [prevX, prevY] = points[points.length - 2] || [x, y];
+> ```
+>
+> 마우스를 움직일 때마다 선을 그리려면, "이전 좌표 → 현재 좌표" 두 점이 필요합니다. <br>
+> 단, **처음 찍는 점이라 이전 점이 없을 경우엔**, 현재 점에서 시작해야 하므로 `|| [x, y]` 로 처리합니다.
+>
+> 따라서 선은 항상 이전 점과 현재 점 사이의 한 구간만 그려지며, 이전 제스처와 시각적으로 연결되지 않는 완전히 독립된 궤적이 됩니다.
