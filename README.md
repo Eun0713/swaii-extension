@@ -41,6 +41,61 @@
 
 <br>
 
+# 👀 기능 미리보기
+
+### ① 커스텀 제스처 생성
+<details><summary>📸 미리보기</summary>
+
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/c33b70e7-07b2-4177-93cf-5c303f03be56" alt="커스텀 제스처 생성" width="600" />
+</p>
+  
+</details>
+
+- 마우스로 제스처를 직접 그려서 자신만의 커스텀 제스처를 생성할 수 있습니다. <br>
+- 제한된 선택지가 아닌, 직접 그린 궤적을 통해 원하는 동작을 자유롭게 정의할 수 있습니다.
+
+### ② 동작 매핑 및 기본 제스처 제공
+<details><summary>📸 미리보기</summary>
+
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/3cb8174b-77e0-4d1d-b3d5-2fbc440e23b1" alt="동작 매핑" width="600" />
+</p>
+  
+</details>
+
+- 생성한 제스처에 원하는 동작을 매핑할 수 있습니다.  
+  > 새 탭 열기, Gmail 열기, 스크롤 맨 위로 등  
+- 동일한 제스처라도 **사이트별로 다른 동작**을 설정할 수 있습니다.
+
+- 또한 Swaii는 아래와 같은 **기본 제스처 5종**을 기본으로 제공합니다.  
+  사용자는 별도의 제스처 생성 없이 곧바로 활용할 수 있습니다.
+
+> | 제스처 이름 | 형태 예시 |
+> |-------------|------------|
+> | 원형 패턴      | O       |
+> | 삼각형 패턴     | △         |
+> | S자 패턴        | S          |
+> | 무한대 패턴    | ∞          |
+> | N자 패턴     | N          |
+
+### ④매핑된 제스처 실행
+사용자가 매핑한 사이트에서 매핑된 제스처를 그리면, 아래와 같은 흐름으로 동작이 실행됩니다.
+
+<details><summary>📸 미리보기</summary>
+
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/8b7705de-9d4e-4429-892d-452325334b63" width="400" valign="middle" />
+  <img width="40" height="28" alt="Vector (3)" src="https://github.com/user-attachments/assets/bbb3fcc4-7a79-4a1e-93c0-91d8bf93fa5c" />
+  <img src="https://github.com/user-attachments/assets/f2dc2719-5e1c-4c2e-b2ba-a21ef133b8fc" width="400" valign="middle" />
+</p>
+</details>
+
+- 사이트마다 지정한 액션이 실행되며, 궤적은 자연스럽게 사라집니다.  
+- 제스처 인식은 사용자의 마우스 움직임을 기준으로 실시간 처리되며, 연결된 동작이 브라우저 상에서 즉시 반영됩니다.
+
+<br>
+
 # ⚙️ 기술 스택
 
 ### 클라이언트
