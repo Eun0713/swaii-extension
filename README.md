@@ -1,7 +1,5 @@
-# 🌀 Swaii
-
 <div align="center">
-  <img width="380" height="380" alt="Swaii Logo" src="https://github.com/user-attachments/assets/5a3b75f7-8c7c-43b2-bae6-121ce14e7e02"/>
+  <img width="360" height="360" alt="Swaii Logo" src="https://github.com/user-attachments/assets/5a3b75f7-8c7c-43b2-bae6-121ce14e7e02"/>
 
   <p>
     <strong>사이트마다 다른 단축키, 외우기 불편하지 않나요?</strong><br>
