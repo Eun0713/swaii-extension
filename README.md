@@ -121,10 +121,10 @@
 
 | 기술 | 도입 이유 |
 |------|-----------|
-| ![JavaScript](https://img.shields.io/badge/JavaScript-FFD93E.svg?style=for-the-badge&logo=JavaScript&logoColor=white) | 확장 기능과 UI, 서버 로직까지 전반을 구성하는 핵심 언어 |
-| ![React](https://img.shields.io/badge/React-61DAFB?style=for-the-badge&logo=React&logoColor=002157) | 다양한 설정 페이지와 제스처 관련 UI를 컴포넌트 단위로 유연하게 관리 |
-| ![React Router](https://img.shields.io/badge/reactrouter-CA4245?style=for-the-badge&logo=reactrouter&logoColor=white) | SPA에서 라우팅을 처리하며, 페이지 전환 흐름을 관리 |
-| ![tailwindcss](https://img.shields.io/badge/tailwindcss-1FA3EC?style=for-the-badge&logo=tailwindcss&logoColor=white) | 클래스 기반의 유틸리티 CSS 프레임워크로 빠른 UI 구현 |
+| ![JavaScript](https://img.shields.io/badge/JavaScript-333333?style=for-the-badge&logo=JavaScript&logoColor=F7DF1E) | 확장 기능과 UI, 서버 로직까지 전반을 구성하는 핵심 언어 |
+| ![React](https://img.shields.io/badge/React-41454A?style=for-the-badge&logo=React&logoColor=61DAFB) | 다양한 설정 페이지와 제스처 관련 UI를 컴포넌트 단위로 유연하게 관리 |
+| ![React Router](https://img.shields.io/badge/reactrouter-2B2B2B?style=for-the-badge&logo=reactrouter&logoColor=CA4245) | SPA에서 라우팅을 처리하며, 페이지 전환 흐름을 관리 |
+| ![tailwindcss](https://img.shields.io/badge/tailwindcss-06B6D4?style=for-the-badge&logo=tailwindcss&logoColor=white) | 클래스 기반의 유틸리티 CSS 프레임워크로 빠른 UI 구현 |
 | ![Vite](https://img.shields.io/badge/Vite-646CFF?style=for-the-badge&logo=Vite&logoColor=white) | 빠른 번들링 및 개발 환경 |
 | ![Chrome Extension](https://img.shields.io/badge/Chrome_Extension-4285F4?style=for-the-badge&logo=Google-Chrome&logoColor=white) |  Manifest V3 기반으로 브라우저 상에서 동작하는 확장 프로그램 구성 |
 
