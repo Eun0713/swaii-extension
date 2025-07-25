@@ -80,13 +80,10 @@
 - 또한 Swaii는 아래와 같은 **기본 제스처 5종**을 기본으로 제공합니다.  
   사용자는 별도의 제스처 생성 없이 곧바로 활용할 수 있습니다.
 
-> | 제스처 이름 | 형태 예시 |
-> |-------------|------------|
-> | 원형 패턴      | O       |
-> | 삼각형 패턴     | △         |
-> | S자 패턴        | S          |
-> | 무한대 패턴    | ∞          |
-> | N자 패턴     | N          |
+> | 구분    | 원형 패턴 | 삼각형 패턴 | S자 패턴 | 무한대 패턴 | N자 패턴 |
+> | ----- | ----- | ------ | ----- | ------ | ----- |
+> | 형태 예시 | O     | △      | S     | ∞      | N     |
+
 
 ### ③ 매핑된 제스처 실행
 사용자가 매핑한 사이트에서 매핑된 제스처를 그리면, 아래와 같은 흐름으로 동작이 실행됩니다.
@@ -124,17 +121,88 @@
 | ![JavaScript](https://img.shields.io/badge/JavaScript-333333?style=for-the-badge&logo=JavaScript&logoColor=F7DF1E) | 확장 기능과 UI, 서버 로직까지 전반을 구성하는 핵심 언어 |
 | ![React](https://img.shields.io/badge/React-41454A?style=for-the-badge&logo=React&logoColor=61DAFB) | 다양한 설정 페이지와 제스처 관련 UI를 컴포넌트 단위로 유연하게 관리 |
 | ![React Router](https://img.shields.io/badge/reactrouter-2B2B2B?style=for-the-badge&logo=reactrouter&logoColor=CA4245) | SPA에서 라우팅을 처리하며, 페이지 전환 흐름을 관리 |
-| ![tailwindcss](https://img.shields.io/badge/tailwindcss-06B6D4?style=for-the-badge&logo=tailwindcss&logoColor=white) | 클래스 기반의 유틸리티 CSS 프레임워크로 빠른 UI 구현 |
-| ![Vite](https://img.shields.io/badge/Vite-646CFF?style=for-the-badge&logo=Vite&logoColor=white) | 빠른 번들링 및 개발 환경 |
-| ![Chrome Extension](https://img.shields.io/badge/Chrome_Extension-4285F4?style=for-the-badge&logo=Google-Chrome&logoColor=white) |  Manifest V3 기반으로 브라우저 상에서 동작하는 확장 프로그램 구성 |
+| ![tailwindcss](https://img.shields.io/badge/tailwindcss-222222?style=for-the-badge&logo=tailwindcss&logoColor=06B6D4) | 클래스 기반의 유틸리티 CSS 프레임워크로 빠른 UI 구현 |
+| ![Vite](https://img.shields.io/badge/Vite-2B2B2B?style=for-the-badge&logo=Vite&logoColor=646CFF) | 빠른 번들링 및 개발 환경 |
+| ![Chrome Extension](https://img.shields.io/badge/Chrome_Extension-222222?style=for-the-badge&logo=Google-Chrome&logoColor=4285F4) |  Manifest V3 기반으로 브라우저 상에서 동작하는 확장 프로그램 구성 |
 
 ### 서버
-
 | 기술 | 도입 이유 |
 |------|-----------|
-| ![Node.js](https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=Node.js&logoColor=white) | 크롬 확장과 동일한 자바스크립트 환경에서 빠르게 서버를 구축 |
-| ![Express](https://img.shields.io/badge/Express-000000?style=for-the-badge&logo=express&logoColor=white) | REST API 서버 구성에 최적화되어 있어, 사용자 제스처·매핑 정보를 빠르게 처리 |
-| ![Supabase](https://img.shields.io/badge/Supabase-3ECF8E?style=for-the-badge&logo=supabase&logoColor=white) | 로그인한 사용자의 제스처 및 매핑 데이터를 저장하고, 기기 간 동기화를 지원 |
+| ![Node.js](https://img.shields.io/badge/Node.js-2E2E2E?style=for-the-badge&logo=Node.js&logoColor=339933) | 크롬 확장과 동일한 자바스크립트 환경에서 빠르게 서버를 구축 |
+| ![Express](https://img.shields.io/badge/Express-333333?style=for-the-badge&logo=express&logoColor=FFFFFF) | REST API 서버 구성에 최적화되어 있어, 사용자 제스처·매핑 정보를 빠르게 처리 |
+| ![Supabase](https://img.shields.io/badge/Supabase-222B33?style=for-the-badge&logo=supabase&logoColor=3ECF8E) | 로그인한 사용자의 제스처 및 매핑 데이터를 저장하고, 기기 간 동기화를 지원 |
+
+<br>
+
+# 🌀 개발 과정
+## 1. 제스처는 사용자마다 전부 다른데, 어떻게 비교가 가능할까?
+동일한 모양의 제스처도, 사람마다 그리는 위치·크기·속도는 전부 다릅니다. <br>
+이런 입력을 그대로 비교하면, 같은 제스처조차 서로 다르다고 판단하게 됩니다.
+
+이를 해결하기 위해, **모든 입력 제스처를 정규화**(normalization)하여 <br>
+위치, 크기, 밀도에 관계없이 **일관된 기준**으로 비교할 수 있도록 설계했습니다. <br>
+이 과정을 통해 사용자의 자유로운 입력을 정확한 매핑 실행으로 연결할 수 있습니다.
+
+### 1-1. 정규화 ① — 시작 위치를 없애는 이유
+
+사용자가 $(x, y)$ 좌표상에서 제스처를 시작한 지점은 매번 달라집니다. <br>
+하지만 제스처를 인식할 때 중요한 것은 제스처의**모양**(shape) 이며, **입력된 위치**(position)는 비교 대상에서 제외되어야 합니다.
+
+
+#### 목적
+
+사용자의 입력 궤적을 정확히 판단하기 위해, **절대 좌표를 제거하고 궤적의 모양만 남기는 처리**가 필요했습니다.
+같은 제스처를 왼쪽 아래에서 그리든, 오른쪽 위에서 그리든, **모양이 같다면 동일한 제스처로 인식되어야** 하기 때문입니다.
+
+#### 기술적 접근 방식
+
+입력된 제스처는 **하나의 좌표 배열**로 표현됩니다. <br>
+이를 다음과 같이 정의합니다:
+
+$$
+P = [p_0, p_1, \dots, p_n]
+$$
+
+- $P$는 사용자가 마우스로 그린 제스처의 모든 궤적 좌표들의 집합입니다.
+- $p_i = (x_i, y_i)$는 제스처를 그리는 동안 마우스 커서가 지나간 한 점의 좌표입니다.
+- 그중 첫 번째 좌표 $p_0 = (x_0, y_0)$는 **제스처를 처음으로 그리기 시작한 위치**를 나타냅니다.
+  
+제스처를 그린 위치에 관계없이 동일한 형태로 비교할 수 있도록, 모든 좌표를 시작점 $p_0$을 기준으로 상대 좌표로 변환합니다.
+즉, 제스처의 시작점을 원점 $(0, 0)$으로 옮기고, 나머지 좌표들도 그에 맞춰 이동시키는 방식입니다.
+
+<br>
+
+#### 📐 변환 수식
+
+$$
+(x'_i, y'_i) = (x_i - x_0, \ y_i - y_0)
+$$
+
+- $(x_i, y_i)$: 변환 전의 원래 좌표
+- $(x_0, y_0)$: 시작점 (기준점)
+- $(x'_i, y'_i)$: 변환 후 상대 좌표
+
+⮕ 각 좌표에서 시작점의 좌표를 뺀 값이 새로운 상대 좌표가 됩니다.
+
+ **예시:**
+> | 항목             | 값                                               |
+> | -------------- | ----------------------------------------------- |
+> | 시작점 \$p\_0\$   | \$(120,\ 200)\$                                 |
+> | 원래 좌표 \$p\_1\$ | \$(135,\ 220)\$                                 |
+> | 변환 후 \$p'\_1\$ | \$(135 - 120,\ 220 - 200)\$ → **\$(15,\ 20)\$** |
+
+<br>
+
+이 계산은 실제 코드로 다음과 같이 구현됩니다:
+
+```js
+const normalizedPoint = {
+  x: point.x - startX,
+  y: point.y - startY,
+};
+
+```
+위 코드에서 `startX`, `startY`는 시작점 $p_0$의 x, y 좌표이며, `point`는 현재 변환하려는 좌표입니다.
 
 <br>
 
