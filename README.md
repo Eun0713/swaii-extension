@@ -428,10 +428,10 @@ const matchedGestureMapping = await getMatchedMapping(matched.name);
 
 > 사용자가 지정한 매핑 정보가 있다면, 이후 제스처 한 번으로도 해당 기능이 자동 실행되는 구조입니다.
 
-<details>
+<details open>
 <summary>📽️ <strong>제스처 입력 후 동작 실행 예시</strong></summary>
 <p align="center">
-  <img src="https://github.com/user-attachments/assets/eca2f255-6b36-4d1c-8d98-7542abe1a990" alt="제스처 입력 후 동작 실행" width="800" />
+  <img src="https://github.com/user-attachments/assets/eca2f255-6b36-4d1c-8d98-7542abe1a990" alt="제스처 입력 후 동작 실행" width="700" />
 </p>
 </details>
 
@@ -448,7 +448,7 @@ const matchedGestureMapping = await getMatchedMapping(matched.name);
 <details open>
 <summary>📽️ <strong>문제 발생 장면 보기</strong></summary>
 <p align="center">
-  <img src="https://github.com/user-attachments/assets/6defdd1c-75a3-4fef-99f7-5662a4fa17d0" alt="제스처 궤적 이어짐 문제 영상" width="800" />
+  <img src="https://github.com/user-attachments/assets/6defdd1c-75a3-4fef-99f7-5662a4fa17d0" alt="제스처 궤적 이어짐 문제 영상" width="700" />
 </p>
 </details>
 
@@ -558,7 +558,7 @@ ctx.stroke();
 <details open>
 <summary>📽️ <strong>문제 발생 장면 보기</strong></summary>
 <p align="center">
-  <img src="https://github.com/user-attachments/assets/6ace3a67-88e4-4b76-9ad8-43c1161ef3e3" alt="제스처 궤적이 보이지 않는 문제 영상" width="800" />
+  <img src="https://github.com/user-attachments/assets/6ace3a67-88e4-4b76-9ad8-43c1161ef3e3" alt="제스처 궤적이 보이지 않는 문제 영상" width="700" />
 </p>
 </details>
 
