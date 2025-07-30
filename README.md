@@ -65,10 +65,10 @@
 # ⛓ 주요 기능 흐름
 
 ### ① 커스텀 제스처 생성
-<details><summary>📸 미리보기</summary>
+<details open><summary>📸 미리보기</summary>
 
 <p align="center">
-  <img src="https://github.com/user-attachments/assets/c33b70e7-07b2-4177-93cf-5c303f03be56" alt="커스텀 제스처 생성" width="600" />
+  <img src="https://github.com/user-attachments/assets/c33b70e7-07b2-4177-93cf-5c303f03be56" alt="커스텀 제스처 생성" width="500" />
 </p>
   
 </details>
@@ -77,10 +77,10 @@
 - 제한된 선택지가 아닌, 직접 그린 궤적을 통해 원하는 동작을 자유롭게 정의할 수 있습니다.
 
 ### ② 동작 매핑 및 기본 제스처 제공
-<details><summary>📸 미리보기</summary>
+<details open><summary>📸 미리보기</summary>
 
 <p align="center">
-  <img src="https://github.com/user-attachments/assets/3cb8174b-77e0-4d1d-b3d5-2fbc440e23b1" alt="동작 매핑" width="600" />
+  <img src="https://github.com/user-attachments/assets/3cb8174b-77e0-4d1d-b3d5-2fbc440e23b1" alt="동작 매핑" width="500" />
 </p>
   
 </details>
@@ -100,7 +100,7 @@
 ### ③ 매핑된 제스처 실행
 사용자가 매핑한 사이트에서 매핑된 제스처를 그리면, 아래와 같은 흐름으로 동작이 실행됩니다.
 
-<details><summary>📸 미리보기</summary>
+<details open><summary>📸 미리보기</summary>
 
 <p align="center">
   <strong>① 제스처 입력</strong><br />
@@ -445,7 +445,7 @@ const matchedGestureMapping = await getMatchedMapping(matched.name);
 ### 문제 상황
 - 마우스로 제스처를 그리고 마우스를 뗀 뒤, 새로운 위치에서 다시 제스처를 시작했더니, <br>
   ⮕ **이전 제스처의 마지막 점과 연결된 선이 이어서 그려지는 현상**이 나타났습니다.
-<details>
+<details open>
 <summary>📽️ <strong>문제 발생 장면 보기</strong></summary>
 <p align="center">
   <img src="https://github.com/user-attachments/assets/6defdd1c-75a3-4fef-99f7-5662a4fa17d0" alt="제스처 궤적 이어짐 문제 영상" width="800" />
@@ -555,7 +555,7 @@ ctx.stroke();
 이로 인해 제스처를 그리고 있는 동안에는 아무런 피드백이 없고, <br>
 제스처가 끝난 뒤에야 선이 한꺼번에 나타나는 부자연스러운 동작이 발생했습니다.
 
-<details>
+<details open>
 <summary>📽️ <strong>문제 발생 장면 보기</strong></summary>
 <p align="center">
   <img src="https://github.com/user-attachments/assets/6ace3a67-88e4-4b76-9ad8-43c1161ef3e3" alt="제스처 궤적이 보이지 않는 문제 영상" width="800" />
