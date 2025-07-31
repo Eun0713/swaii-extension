@@ -8,8 +8,7 @@
   },
   "permissions": [
     "identity",
-    "storage",
-    "activeTab"
+    "storage"
   ],
   "host_permissions": [
     "https://www.notion.so/*",
