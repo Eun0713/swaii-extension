@@ -53,7 +53,7 @@ const PatternItem = ({
     <DeleteConfirmModal
       title="이 패턴을 삭제하시겠습니까?"
       description={`${title}에 연결된 ${description} 기능이 삭제됩니다.`}
-      onCancel={handleOpenDeleteModal}
+      onCancel={handleCloseDeleteModal}
       onConfirm={handleConfirmDeletePattern}
     />
   );
