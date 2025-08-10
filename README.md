@@ -1,3 +1,4 @@
+# Swaii
 <div align="center">
   <img width="360" height="360" alt="Swaii Logo" src="https://github.com/user-attachments/assets/5a3b75f7-8c7c-43b2-bae6-121ce14e7e02"/>
 
@@ -68,29 +69,38 @@
 <details open><summary>📸 미리보기</summary>
 
 <p align="center">
-  <img src="https://github.com/user-attachments/assets/c33b70e7-07b2-4177-93cf-5c303f03be56" alt="커스텀 제스처 생성" width="500" />
+  <img src="https://github.com/user-attachments/assets/af746ca8-2050-4f32-adb3-71724df42ade" 
+       alt="커스텀 제스처 생성 (별모양 패턴)" width="440" />
+  &nbsp;&nbsp;&nbsp;
+  <img src="https://github.com/user-attachments/assets/4750c162-9cc2-4d1f-b3c3-a78369ae950e" 
+       alt="커스텀 제스처 생성 (Z자 패턴)" width="440" />
 </p>
-  
+
 </details>
 
-- 마우스로 제스처를 직접 그려서 자신만의 커스텀 제스처를 생성할 수 있습니다. <br>
-- 제한된 선택지가 아닌, 직접 그린 궤적을 통해 원하는 동작을 자유롭게 정의할 수 있습니다.
+- **자유 입력**: Canvas 위에 마우스로 직접 궤적을 그려, 제한 없이 원하는 모양의 제스처를 정의할 수 있습니다.
+- **실시간 미리보기**: 그리는 동안 선이 즉시 시각화되어 입력 결과를 바로 확인할 수 있습니다.
+- **되돌리기/다시 그리기**: 실수했을 때 "되돌리기"로 전체를 초기화해 다시 그릴 수 있습니다.
+- **저장**: 저장 버튼 클릭 시 “저장되었습니다” 알림과 함께 궤적 좌표가 저장되며, 이후 제스처-동작 매핑에서 즉시 사용할 수 있습니다.
 
 ### ② 동작 매핑 및 기본 제스처 제공
 <details open><summary>📸 미리보기</summary>
 
 <p align="center">
-  <img src="https://github.com/user-attachments/assets/3cb8174b-77e0-4d1d-b3d5-2fbc440e23b1" alt="동작 매핑" width="500" />
+  <img src="https://github.com/user-attachments/assets/59412ca8-bdee-4e87-a07e-87dcf50b7e17" 
+       alt="패턴 설정" width="440" />
+    &nbsp;&nbsp;&nbsp;
+  <img src="https://github.com/user-attachments/assets/6a54c80b-d555-49ec-b718-db16254603bc" 
+       alt="동작 매팡" width="440" />
 </p>
-  
+
 </details>
 
-- 생성한 제스처에 원하는 동작을 매핑할 수 있습니다.  
-  > 새 탭 열기, Gmail 열기, 스크롤 맨 위로 등  
-- 동일한 제스처라도 **사이트별로 다른 동작**을 설정할 수 있습니다.
+- Swaii에서는 직접 만든 제스처뿐 아니라 기본 제공 제스처에도 원하는 동작을 자유롭게 매핑할 수 있습니다.
+  > **동작 예시**: 새 탭 열기, Gmail 열기, 스크롤 맨 위로 등  
+- 동일한 제스처라도 **사이트별로 다른 동작**을 설정할 수 있어, 상황에 맞는 제어가 가능합니다.
 
-- 또한 Swaii는 아래와 같은 **기본 제스처 5종**을 기본으로 제공합니다.  
-  사용자는 별도의 제스처 생성 없이 곧바로 활용할 수 있습니다.
+- **기본 제공 제스처 5종**은 생성 없이 바로 사용할 수 있습니다.
 
 > | 구분    | 원형 패턴 | 삼각형 패턴 | S자 패턴 | 무한대 패턴 | N자 패턴 |
 > | ----- | ----- | ------ | ----- | ------ | ----- |
