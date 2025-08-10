@@ -113,7 +113,7 @@
 <details open><summary>📸 미리보기</summary>
 
 <p align="center">
-  <strong>① 제스처 입력</strong><br />
+  <strong>① 사이트-제스처-동작 매핑</strong><br />
   <img src="https://github.com/user-attachments/assets/8b7705de-9d4e-4429-892d-452325334b63" width="500" />
 </p>
 
