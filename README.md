@@ -70,10 +70,10 @@
 
 <p align="center">
   <img src="https://github.com/user-attachments/assets/af746ca8-2050-4f32-adb3-71724df42ade" 
-       alt="커스텀 제스처 생성 (별모양 패턴)" width="440" />
+       alt="커스텀 제스처 생성 (별모양 패턴)" width="400" />
   &nbsp;&nbsp;&nbsp;
   <img src="https://github.com/user-attachments/assets/4750c162-9cc2-4d1f-b3c3-a78369ae950e" 
-       alt="커스텀 제스처 생성 (Z자 패턴)" width="440" />
+       alt="커스텀 제스처 생성 (Z자 패턴)" width="400" />
 </p>
 
 </details>
@@ -88,10 +88,10 @@
 
 <p align="center">
   <img src="https://github.com/user-attachments/assets/59412ca8-bdee-4e87-a07e-87dcf50b7e17" 
-       alt="패턴 설정" width="440" />
+       alt="패턴 설정" width="400" />
     &nbsp;&nbsp;&nbsp;
   <img src="https://github.com/user-attachments/assets/6a54c80b-d555-49ec-b718-db16254603bc" 
-       alt="동작 매팡" width="440" />
+       alt="동작 매팡" width="400" />
 </p>
 
 </details>
