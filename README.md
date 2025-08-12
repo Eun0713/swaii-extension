@@ -1,4 +1,3 @@
-# Swaii
 <div align="center">
   <img width="360" height="360" alt="Swaii Logo" src="https://github.com/user-attachments/assets/5a3b75f7-8c7c-43b2-bae6-121ce14e7e02"/>
 
@@ -146,7 +145,7 @@
 ### 서버
 | 기술 | 도입 이유 |
 |------|-----------|
-| ![Node.js](https://img.shields.io/badge/Node.js-2E2E2E?style=for-the-badge&logo=Node.js&logoColor=339933) | 크롬 확장과 동일한 자바스크립트 환경에서 빠르게 서버를 구축 |
+| ![Node.js](https://img.shields.io/badge/Node.js-2E2E2E?style=for-the-badge&logo=Node.js&logoColor=339933) | 브라우저 밖에서 JavaScript로 빠르게 서버 구축 |
 | ![Express](https://img.shields.io/badge/Express-333333?style=for-the-badge&logo=express&logoColor=FFFFFF) | REST API 서버 구성에 최적화되어 있어, 사용자 제스처·매핑 정보를 빠르게 처리 |
 | ![Supabase](https://img.shields.io/badge/Supabase-222B33?style=for-the-badge&logo=supabase&logoColor=3ECF8E) | 로그인한 사용자의 제스처 및 매핑 데이터를 저장하고, 기기 간 동기화를 지원 |
 
