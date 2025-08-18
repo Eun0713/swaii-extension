@@ -1,3 +1,4 @@
+import { Point } from "@/types/gesture";
 import { runAction } from "@/utils/action/runAction.content";
 import {
   insertCanvas,
@@ -9,7 +10,7 @@ import { findMatchingGesture } from "@/utils/gesture/gestureMatcher.content";
 import { getMatchedMapping } from "@/utils/mapping/gestureMappingResolver.content";
 
 let isDrawing = false;
-let points = [];
+let points: Point[] = [];
 let mouseDownTime = 0;
 let hasMouseMoved = false;
 
@@ -20,13 +21,13 @@ export const initGestureTracking = () => {
   document.addEventListener("contextmenu", onContextMenu);
 };
 
-const onMouseDown = (e) => {
+const onMouseDown = (e: MouseEvent) => {
   if (e.button !== 2) {
     return;
   }
 
   isDrawing = true;
-  points = [[e.clientX, e.clientY]];
+  points = [{ x: e.clientX, y: e.clientY }];
   mouseDownTime = Date.now();
   hasMouseMoved = false;
 
@@ -34,7 +35,7 @@ const onMouseDown = (e) => {
   clearCanvas();
 };
 
-const onMouseMove = (e) => {
+const onMouseMove = (e: MouseEvent) => {
   if (!isDrawing) {
     return;
   }
@@ -42,9 +43,9 @@ const onMouseMove = (e) => {
   const x = e.clientX;
   const y = e.clientY;
 
-  const [prevX, prevY] = points[points.length - 1];
-  const movedX = x - prevX;
-  const movedY = y - prevY;
+  const prev = points[points.length - 1];
+  const movedX = x - prev.x;
+  const movedY = y - prev.y;
 
   const movedEnough = Math.abs(movedX) > 2 || Math.abs(movedY) > 2;
 
@@ -58,8 +59,12 @@ const onMouseMove = (e) => {
     return;
   }
 
-  points.push([x, y]);
-  drawOnCanvas(x, y, points);
+  points.push({ x, y });
+  drawOnCanvas(
+    x,
+    y,
+    points.map((p) => [p.x, p.y])
+  );
 };
 
 const onMouseUp = async () => {
@@ -95,7 +100,7 @@ const onMouseUp = async () => {
   }
 };
 
-const onContextMenu = (e) => {
+const onContextMenu = (e: MouseEvent) => {
   if (hasMouseMoved) {
     e.preventDefault();
   }

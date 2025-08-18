@@ -1,21 +1,26 @@
+import type { Gesture, Point } from "@/types/gesture";
 import {
   normalizeAll,
   calculateSimilarity,
 } from "@/utils/gesture/gestureNormalizer";
 import { gestureStore } from "@/utils/gesture/gestureStorage";
 
-export const findMatchingGesture = async (rawPoints) => {
+export const findMatchingGesture = async (
+  rawPoints: Point[] | [number, number][]
+): Promise<Gesture | null> => {
   const SIMILARITY_THRESHOLD = 40;
 
-  const convertToObjectPoints = (points) => {
+  const convertToObjectPoints = (
+    points: Point[] | [number, number][]
+  ): Point[] => {
     if (!Array.isArray(points)) {
       return [];
     }
 
     if (Array.isArray(points[0])) {
-      return points.map(([x, y]) => ({ x, y }));
+      return (points as [number, number][]).map(([x, y]) => ({ x, y }));
     }
-    return points;
+    return points as Point[];
   };
 
   const userGesturePoints = convertToObjectPoints(rawPoints);

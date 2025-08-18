@@ -1,4 +1,6 @@
-export const normalizePosition = (points) => {
+import { Point } from "@/types/gesture";
+
+export const normalizePosition = (points: Point[]): Point[] => {
   if (!points.length) {
     return [];
   }
@@ -12,8 +14,8 @@ export const normalizePosition = (points) => {
   }));
 };
 
-export const normalizeScale = (points) => {
-  const round = (number, decimalPlaces = 2) =>
+export const normalizeScale = (points: Point[]): Point[] => {
+  const round = (number: number, decimalPlaces = 2) =>
     Math.round(number * Math.pow(10, decimalPlaces)) /
     Math.pow(10, decimalPlaces);
 
@@ -39,12 +41,12 @@ export const normalizeScale = (points) => {
   }));
 };
 
-export const normalizePoints = (points, targetCount = 32) => {
+export const normalizePoints = (points: Point[], targetCount = 32): Point[] => {
   if (points.length === 0) {
     return [];
   }
 
-  const result = [];
+  const result: Point[] = [];
   const step = points.length / targetCount;
 
   for (let i = 0; i < targetCount; i++) {
@@ -55,7 +57,10 @@ export const normalizePoints = (points, targetCount = 32) => {
   return result;
 };
 
-export const calculateSimilarity = (pointsA, pointsB) => {
+export const calculateSimilarity = (
+  pointsA: Point[],
+  pointsB: Point[]
+): number => {
   if (pointsA.length !== pointsB.length || pointsA.length === 0) {
     return Infinity;
   }
@@ -71,7 +76,10 @@ export const calculateSimilarity = (pointsA, pointsB) => {
   return totalDistance / pointsA.length;
 };
 
-export const normalizeAll = (points, targetCount) => {
+export const normalizeAll = (
+  points: Point[],
+  targetCount: number = 32
+): Point[] => {
   const resampled = normalizePoints(points, targetCount);
   const resized = normalizeScale(resampled);
   const repositioned = normalizePosition(resized);

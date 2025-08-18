@@ -1,6 +1,7 @@
-import storageArrayStore from "@/utils/storageArrayStore";
+import { Gesture } from "@/types/gesture";
+import storageArrayStore, { Store } from "@/utils/storageArrayStore";
 
-const createUserGestureStore = (email) => {
+const createUserGestureStore = (email: string): Store<Gesture> => {
   if (!email) {
     throw new Error("유저 이메일이 필요합니다.");
   }
