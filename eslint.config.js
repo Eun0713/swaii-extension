@@ -1,4 +1,6 @@
 import js from "@eslint/js";
+import tsPlugin from "@typescript-eslint/eslint-plugin";
+import tsParser from "@typescript-eslint/parser";
 import prettier from "eslint-config-prettier";
 import importPlugin from "eslint-plugin-import";
 import prettierPlugin from "eslint-plugin-prettier";
@@ -11,13 +13,14 @@ export default [
     ignores: ["dist"],
   },
   {
-    files: ["**/*.{js,jsx}"],
+    files: ["**/*.{js,jsx,ts,tsx}"],
     languageOptions: {
       ecmaVersion: "latest",
       globals: {
         ...globals.browser,
         chrome: "readonly",
       },
+      parser: tsParser,
       parserOptions: {
         ecmaFeatures: { jsx: true },
         sourceType: "module",
@@ -28,16 +31,19 @@ export default [
       "react-refresh": reactRefresh,
       import: importPlugin,
       prettier: prettierPlugin,
+      "@typescript-eslint": tsPlugin,
     },
     rules: {
       ...js.configs.recommended.rules,
+      ...tsPlugin.configs.recommended.rules,
       "react-hooks/rules-of-hooks": "error",
       "react-hooks/exhaustive-deps": "warn",
       "react-refresh/only-export-components": [
         "warn",
         { allowConstantExport: true },
       ],
-      "no-unused-vars": ["error", { varsIgnorePattern: "^[A-Z_]" }],
+      "no-unused-vars": "off",
+      "@typescript-eslint/no-unused-vars": ["error"],
       "import/order": [
         "error",
         {
