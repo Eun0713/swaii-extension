@@ -3,7 +3,7 @@ import { Store } from "@/types/store";
 import gestureMappingStorage from "@/utils/mapping/gestureMappingStorage";
 import userMappingStorage from "@/utils/mapping/userMappingStorage";
 
-export const selectMappingStore = async (): Promise<{
+const selectMappingStore = async (): Promise<{
   store: Store<Mapping>;
   userEmail?: string;
 }> => {
@@ -17,3 +17,5 @@ export const selectMappingStore = async (): Promise<{
 
   return { store, userEmail };
 };
+
+export default selectMappingStore;
