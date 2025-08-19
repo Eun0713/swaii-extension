@@ -1,4 +1,8 @@
-const AlertMessage = ({ message, type = "error", visible }) => {
+import React from "react";
+
+import { AlertState } from "@/types/alert";
+
+const AlertMessage: React.FC<AlertState> = ({ message, type, visible }) => {
   const bgColor = type === "error" ? "bg-red-500" : "bg-green-500";
   const visibility = visible
     ? "opacity-100 visible translate-y-0"

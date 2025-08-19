@@ -1,7 +1,13 @@
 import WarningIcon from "@/assets/icons/icon-warning.svg?react";
 import Button from "@/components/common/Button";
+import { DeleteConfirmModalProps } from "@/types/modal";
 
-const DeleteConfirmModal = ({ title, description, onCancel, onConfirm }) => {
+const DeleteConfirmModal = ({
+  title,
+  description,
+  onCancel,
+  onConfirm,
+}: DeleteConfirmModalProps) => {
   return (
     <div className="absolute left-0 top-0 z-50 flex h-full w-full items-center justify-center bg-black bg-opacity-50">
       <div className="w-[350px] rounded-xl bg-white p-4">
