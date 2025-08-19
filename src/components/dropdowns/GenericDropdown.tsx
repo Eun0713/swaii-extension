@@ -1,7 +1,8 @@
 import DeleteButton from "@/assets/icons/icon-close.svg?react";
 import IconDropdownArrow from "@/assets/icons/icon-dropdown-arrow.svg?react";
+import { GenericDropdownProps, BaseDropdownItem } from "@/types/dropdown";
 
-const GenericDropdown = ({
+const GenericDropdown = <DropdownItemType extends BaseDropdownItem>({
   isOpen,
   onToggle,
   value,
@@ -9,7 +10,7 @@ const GenericDropdown = ({
   items,
   label,
   onDeleteClick,
-}) => {
+}: GenericDropdownProps<DropdownItemType>) => {
   return (
     <div className="relative w-full">
       <button
@@ -27,7 +28,7 @@ const GenericDropdown = ({
         <ul className="scrollbar-hide absolute z-10 mt-1 max-h-24 w-full overflow-auto rounded-md bg-[#2F2F38]">
           {items.map((item) => (
             <li
-              key={`${item.value}-${item.type}`}
+              key={item.value}
               className="group flex items-center justify-between px-4 py-2 text-base text-white hover:bg-[#3A3A45]"
             >
               <span
@@ -40,7 +41,7 @@ const GenericDropdown = ({
                 {item.label}
               </span>
 
-              {item.type === "custom" && onDeleteClick && (
+              {"type" in item && item.type === "custom" && onDeleteClick && (
                 <button type="button" onClick={(e) => onDeleteClick(e, item)}>
                   <DeleteButton />
                 </button>

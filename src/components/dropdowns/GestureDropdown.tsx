@@ -1,10 +1,12 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import AlertMessage from "@/components/common/AlertMessage";
 import DeleteConfirmModal from "@/components/common/DeleteConfirmModal";
 import GenericDropdown from "@/components/dropdowns/GenericDropdown";
 import useAlert from "@/hooks/useAlert";
 import { deleteUserGesture } from "@/services/gestureService";
+import { GestureDropdownProps, GestureDropdownItem } from "@/types/dropdown";
+import { Gesture } from "@/types/gesture";
 import { gestureStore } from "@/utils/gesture/gestureStorage";
 import selectGestureStore from "@/utils/gesture/selectGestureStore";
 import selectMappingStore from "@/utils/mapping/selectMappingStore";
@@ -15,16 +17,17 @@ const GestureDropdown = ({
   editingGestureName,
   navigateToSettings,
   ...props
-}) => {
-  const [items, setItems] = useState([]);
+}: GestureDropdownProps) => {
+  const [items, setItems] = useState<GestureDropdownItem[]>([]);
   const [modalOpen, setModalOpen] = useState(false);
-  const [gestureToDelete, setGestureToDelete] = useState(null);
+  const [gestureToDelete, setGestureToDelete] =
+    useState<GestureDropdownItem | null>(null);
   const { alert, showAlert } = useAlert();
 
   const loadGestureItems = async () => {
     const { store, userEmail } = await selectGestureStore();
 
-    let allGestures = [];
+    let allGestures: Gesture[] = [];
 
     if (userEmail) {
       const defaultGestures = await gestureStore.getAll();
@@ -35,7 +38,7 @@ const GestureDropdown = ({
       allGestures = await gestureStore.getAll();
     }
 
-    const gestureItems = allGestures.map((gesture) => ({
+    const gestureItems: GestureDropdownItem[] = allGestures.map((gesture) => ({
       label: gesture.name + (gesture.type === "custom" ? " (사용자)" : ""),
       value: gesture.name,
       type: gesture.type,
@@ -48,9 +51,8 @@ const GestureDropdown = ({
     loadGestureItems();
   }, []);
 
-  const deleteGesture = async (item) => {
+  const deleteGesture = async (item: GestureDropdownItem) => {
     const { store, userEmail } = await selectGestureStore();
-
     await store.remove({ name: item.value, type: "custom" });
 
     if (userEmail) {
@@ -82,8 +84,12 @@ const GestureDropdown = ({
     await loadGestureItems();
   };
 
-  const handleDelete = async (e, item) => {
+  const handleDelete = async (
+    e: React.MouseEvent<HTMLButtonElement>,
+    item: GestureDropdownItem
+  ) => {
     e.stopPropagation();
+
     const { store: mappingStore } = await selectMappingStore();
     const mappings = await mappingStore.getAll();
     const isMapped = mappings.some((mapping) => mapping.gesture === item.value);
