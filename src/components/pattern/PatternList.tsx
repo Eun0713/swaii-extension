@@ -1,15 +1,16 @@
 import { useEffect, useState } from "react";
 
 import PatternItem from "@/components/pattern/PatternItem";
+import { MappingWithPoints } from "@/types/mapping";
 import selectMappingStore from "@/utils/mapping/selectMappingStore";
 import { getSiteIcon, getGestureIcon } from "@/utils/ui/iconMapper";
 
 const PatternList = () => {
-  const [patternList, setPatternList] = useState([]);
+  const [patternList, setPatternList] = useState<MappingWithPoints[]>([]);
 
   const loadPatternList = async () => {
     const { store } = await selectMappingStore();
-    const list = await store.getAll();
+    const list = (await store.getAll()) as MappingWithPoints[];
     setPatternList(list);
   };
 

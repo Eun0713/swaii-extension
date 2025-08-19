@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
 import IconPlus from "@/assets/icons/icon-plus.svg?react";
@@ -9,20 +9,29 @@ import GestureDropdown from "@/components/dropdowns/GestureDropdown";
 import SiteDropdown from "@/components/dropdowns/SiteDropdown";
 import { SITE_ACTION_LABELS } from "@/constants/siteActionLabels";
 import useAlert from "@/hooks/useAlert";
+import { Mapping } from "@/types/mapping";
+
+interface PatternFormProps {
+  initialData?: Partial<Mapping>;
+  onCancel: () => void;
+  onSubmit: (data: Mapping) => void;
+  showCustomPatternButton?: boolean;
+}
 
 const PatternForm = ({
   initialData = {},
   onCancel,
   onSubmit,
   showCustomPatternButton = false,
-}) => {
-  const [site, setSite] = useState(initialData.site || "");
-  const [gesture, setGesture] = useState(initialData.gesture || "");
-  const [action, setAction] = useState(initialData.action || "");
-  const [openDropdown, setOpenDropdown] = useState(null);
+}: PatternFormProps) => {
+  const [site, setSite] = useState<string>(initialData.site || "");
+  const [gesture, setGesture] = useState<string>(initialData.gesture || "");
+  const [action, setAction] = useState<string>(initialData.action || "");
+  const [openDropdown, setOpenDropdown] = useState<
+    "site" | "gesture" | "action" | null
+  >(null);
 
   const navigate = useNavigate();
-
   const { alert, showAlert } = useAlert();
 
   useEffect(() => {
@@ -36,11 +45,11 @@ const PatternForm = ({
     showAlert("사이트, 패턴, 기능을 모두 선택해 주세요.", "error");
   };
 
-  const toggleDropdown = (key) => {
+  const toggleDropdown = (key: "site" | "gesture" | "action") => {
     setOpenDropdown(openDropdown === key ? null : key);
   };
 
-  const handleSavePattern = (e) => {
+  const handleSavePattern = (e: React.FormEvent) => {
     e.preventDefault();
 
     if (!site || !gesture || !action) {

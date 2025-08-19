@@ -1,11 +1,21 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 import Button from "@/components/common/Button";
 import DeleteConfirmModal from "@/components/common/DeleteConfirmModal";
 import GestureThumbnail from "@/components/gesture/GestureThumbnail";
 import { deleteUserMapping } from "@/services/mappingService";
+import { MappingWithPoints } from "@/types/mapping";
 import selectMappingStore from "@/utils/mapping/selectMappingStore";
+
+interface PatternItemProps {
+  SiteIcon?: React.FC<React.SVGProps<SVGSVGElement>> | null;
+  GestureIcon?: React.FC<React.SVGProps<SVGSVGElement>> | null;
+  title: string;
+  description: string;
+  mapping: MappingWithPoints;
+  onDelete: () => void;
+}
 
 const PatternItem = ({
   SiteIcon,
@@ -14,7 +24,7 @@ const PatternItem = ({
   description,
   mapping,
   onDelete,
-}) => {
+}: PatternItemProps) => {
   const navigate = useNavigate();
   const [isModalOpen, setIsModalOpen] = useState(false);
 
