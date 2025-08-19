@@ -1,12 +1,16 @@
 import { API_BASE_URL } from "@/constants/api";
+import type { Mapping } from "@/types/mapping";
 import handleApiResponse from "@/utils/api/apiResponse";
 
-export const getUserMappings = async (email) => {
+export const getUserMappings = async (email: string): Promise<Mapping[]> => {
   const response = await fetch(`${API_BASE_URL}/mappings?email=${email}`);
-  return await handleApiResponse(response);
+  return await handleApiResponse<Mapping[]>(response);
 };
 
-export const saveUserMapping = async (email, mapping) => {
+export const saveUserMapping = async (
+  email: string,
+  mapping: Mapping
+): Promise<void> => {
   const response = await fetch(`${API_BASE_URL}/mappings`, {
     method: "POST",
     headers: {
@@ -15,10 +19,13 @@ export const saveUserMapping = async (email, mapping) => {
     body: JSON.stringify({ email, ...mapping }),
   });
 
-  await handleApiResponse(response);
+  await handleApiResponse<void>(response);
 };
 
-export const deleteUserMapping = async (email, mapping) => {
+export const deleteUserMapping = async (
+  email: string,
+  mapping: Mapping
+): Promise<void> => {
   const response = await fetch(`${API_BASE_URL}/mappings`, {
     method: "DELETE",
     headers: {
@@ -27,10 +34,14 @@ export const deleteUserMapping = async (email, mapping) => {
     body: JSON.stringify({ email, ...mapping }),
   });
 
-  await handleApiResponse(response);
+  await handleApiResponse<void>(response);
 };
 
-export const updateUserMapping = async (email, original, updated) => {
+export const updateUserMapping = async (
+  email: string,
+  original: Mapping,
+  updated: Mapping
+): Promise<void> => {
   const response = await fetch(`${API_BASE_URL}/mappings`, {
     method: "PATCH",
     headers: {
@@ -45,5 +56,5 @@ export const updateUserMapping = async (email, original, updated) => {
     }),
   });
 
-  await handleApiResponse(response);
+  await handleApiResponse<void>(response);
 };
