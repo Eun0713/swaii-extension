@@ -1,6 +1,7 @@
-let canvas, ctx;
+let canvas: HTMLCanvasElement | null;
+let ctx: CanvasRenderingContext2D | null;
 
-export const insertCanvas = () => {
+export const insertCanvas = (): void => {
   if (document.getElementById("gesture-canvas")) {
     return;
   }
@@ -23,14 +24,18 @@ export const insertCanvas = () => {
   ctx = canvas.getContext("2d");
 };
 
-export const clearCanvas = () => {
-  if (!ctx) {
+export const clearCanvas = (): void => {
+  if (!ctx || !canvas) {
     return;
   }
   ctx.clearRect(0, 0, canvas.width, canvas.height);
 };
 
-export const drawOnCanvas = (x, y, points) => {
+export const drawOnCanvas = (
+  x: number,
+  y: number,
+  points: number[][]
+): void => {
   if (!ctx) {
     return;
   }
@@ -48,8 +53,10 @@ export const drawOnCanvas = (x, y, points) => {
   ctx.stroke();
 };
 
-export const fadeOutCanvas = () => {
-  const canvas = document.getElementById("gesture-canvas");
+export const fadeOutCanvas = (): void => {
+  const canvas = document.getElementById(
+    "gesture-canvas"
+  ) as HTMLCanvasElement | null;
 
   if (!canvas) {
     return;
@@ -59,7 +66,7 @@ export const fadeOutCanvas = () => {
 
   const fade = setInterval(() => {
     opacity -= 0.05;
-    canvas.style.opacity = opacity;
+    canvas.style.opacity = opacity.toString();
 
     if (opacity <= 0) {
       clearInterval(fade);
