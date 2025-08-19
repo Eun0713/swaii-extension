@@ -1,5 +1,6 @@
 import { Gesture } from "@/types/gesture";
-import storageArrayStore, { Store } from "@/utils/storageArrayStore";
+import { Store } from "@/types/store";
+import storageArrayStore from "@/utils/storageArrayStore";
 
 const createUserGestureStore = (email: string): Store<Gesture> => {
   if (!email) {
