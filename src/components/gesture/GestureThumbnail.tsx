@@ -1,7 +1,19 @@
 import { useEffect, useRef } from "react";
 
-const GestureThumbnail = ({ points, width = 36, height = 36 }) => {
-  const canvasRef = useRef(null);
+import { Point } from "@/types/gesture";
+
+interface GestureThumbnailProps {
+  points: Point[];
+  width?: number;
+  height?: number;
+}
+
+const GestureThumbnail = ({
+  points,
+  width = 36,
+  height = 36,
+}: GestureThumbnailProps) => {
+  const canvasRef = useRef<HTMLCanvasElement | null>(null);
 
   useEffect(() => {
     if (!points || points.length < 2) {
@@ -9,6 +21,10 @@ const GestureThumbnail = ({ points, width = 36, height = 36 }) => {
     }
 
     const canvas = canvasRef.current;
+    if (!canvas) {
+      return;
+    }
+
     const ctx = canvas.getContext("2d");
     if (!ctx) {
       return;

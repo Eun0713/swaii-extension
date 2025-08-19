@@ -1,4 +1,9 @@
-const GestureInput = ({ value, onChange }) => {
+interface GestureInputProps {
+  value: string;
+  onChange: (value: string) => void;
+}
+
+const GestureInput = ({ value, onChange }: GestureInputProps) => {
   return (
     <div className="flex flex-col items-center">
       <label

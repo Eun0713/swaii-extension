@@ -1,27 +1,37 @@
-import { useRef, useEffect, useState } from "react";
+import React, { useRef, useEffect, useState } from "react";
 
-const GestureCanvas = ({ onPathChange, isDisabled }) => {
-  const canvasRef = useRef(null);
+import { Point } from "@/types/gesture";
+
+interface GestureCanvasProps {
+  onPathChange: (path: Point[]) => void;
+  isDisabled?: boolean;
+}
+
+const GestureCanvas = ({
+  onPathChange,
+  isDisabled = false,
+}: GestureCanvasProps) => {
+  const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const [drawing, setDrawing] = useState(false);
-  const [path, setPath] = useState([]);
+  const [path, setPath] = useState<Point[]>([]);
 
   useEffect(() => {
     onPathChange(path);
   }, [path, onPathChange]);
 
-  const getContext = () => {
+  const getContext = (): CanvasRenderingContext2D | null | undefined => {
     return canvasRef.current?.getContext("2d");
   };
 
-  const getMousePos = (e) => {
-    const rect = canvasRef.current.getBoundingClientRect();
+  const getMousePos = (e: React.MouseEvent<HTMLCanvasElement>): Point => {
+    const rect = canvasRef.current!.getBoundingClientRect();
     return {
       x: e.clientX - rect.left,
       y: e.clientY - rect.top,
     };
   };
 
-  const startDrawing = (e) => {
+  const startDrawing = (e: React.MouseEvent<HTMLCanvasElement>) => {
     if (isDisabled) {
       return;
     }
@@ -46,7 +56,7 @@ const GestureCanvas = ({ onPathChange, isDisabled }) => {
     setDrawing(true);
   };
 
-  const drawPath = (e) => {
+  const drawPath = (e: React.MouseEvent<HTMLCanvasElement>) => {
     if (!drawing) {
       return;
     }
@@ -69,7 +79,7 @@ const GestureCanvas = ({ onPathChange, isDisabled }) => {
 
   const clearCanvas = () => {
     const ctx = getContext();
-    if (!ctx) {
+    if (!ctx || !canvasRef.current) {
       return;
     }
 
