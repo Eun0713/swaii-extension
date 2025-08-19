@@ -1,7 +1,7 @@
-const GOOGLE_CLIENT_ID = import.meta.env.VITE_GOOGLE_CLIENT_ID;
+const GOOGLE_CLIENT_ID = import.meta.env.VITE_GOOGLE_CLIENT_ID as string;
 const REDIRECT_URI = chrome.identity.getRedirectURL();
 
-export const requestGoogleLogin = () => {
+export const requestGoogleLogin = (): Promise<string> => {
   const authUrl =
     `https://accounts.google.com/o/oauth2/auth` +
     `?client_id=${GOOGLE_CLIENT_ID}` +
@@ -12,7 +12,7 @@ export const requestGoogleLogin = () => {
   return new Promise((resolve, reject) => {
     chrome.identity.launchWebAuthFlow(
       { url: authUrl, interactive: true },
-      (redirectUrl) => {
+      (redirectUrl?: string) => {
         if (chrome.runtime.lastError) {
           reject(new Error(chrome.runtime.lastError.message));
           return;
