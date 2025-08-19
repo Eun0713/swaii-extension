@@ -1,13 +1,15 @@
 import { useState } from "react";
 
+import { AlertType, AlertState } from "@/types/alert";
+
 const useAlert = () => {
-  const [alert, setAlert] = useState({
+  const [alert, setAlert] = useState<AlertState>({
     message: "",
     type: "success",
     visible: false,
   });
 
-  const showAlert = (message, type = "success") => {
+  const showAlert = (message: string, type: AlertType = "success") => {
     setAlert({ message, type, visible: true });
     setTimeout(() => {
       setAlert((prev) => ({ ...prev, visible: false }));
