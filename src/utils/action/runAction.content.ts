@@ -1,6 +1,9 @@
 import { siteActionRunners } from "@/utils/action/siteActionRunners";
 
-const SITE_ACTION_LABELS = {
+const SITE_ACTION_LABELS: Record<
+  string,
+  Record<string, keyof typeof siteActionRunners>
+> = {
   "Google.com": {
     "새 페이지 생성": "googleNewTab",
     "메일함 열기": "googleOpenGmail",
@@ -23,7 +26,7 @@ const SITE_ACTION_LABELS = {
   },
 };
 
-export const runAction = (actionName, site) => {
+export const runAction = (actionName: string, site: string): void => {
   const actionKey = SITE_ACTION_LABELS?.[site]?.[actionName];
   if (!actionKey) {
     return;

@@ -1,4 +1,4 @@
-export const siteActionRunners = {
+export const siteActionRunners: Record<string, () => void> = {
   googleOpenGmail: () => {
     chrome.runtime.sendMessage({
       type: "openTab",
@@ -14,7 +14,9 @@ export const siteActionRunners = {
 
   notionNewPage: () => {
     const interval = setInterval(() => {
-      const button = document.querySelector('[aria-label="새 페이지"]');
+      const button = document.querySelector<HTMLButtonElement>(
+        '[aria-label="새 페이지"]'
+      );
       if (button) {
         button.click();
         clearInterval(interval);
@@ -22,21 +24,19 @@ export const siteActionRunners = {
     }, 200);
   },
   notionScrollTop: () => {
-    const scrollers = [...document.querySelectorAll("*")].filter(
-      (element) => element.scrollTop > 0
-    );
+    const scrollers = Array.from(
+      document.querySelectorAll<HTMLElement>("*")
+    ).filter((element) => element.scrollTop > 0);
 
-    scrollers.forEach((element) => {
-      element.scrollTo({ top: 0, behavior: "smooth" });
-    });
+    scrollers.forEach((el) => (el.scrollTop = 0));
   },
   notionReload: () => {
     location.reload();
   },
 
   chatgptNewChat: () => {
-    const newChatLink = [...document.querySelectorAll("a")].find((element) =>
-      element.textContent.includes("새 채팅")
+    const newChatLink = Array.from(document.querySelectorAll("a")).find(
+      (element) => element.textContent?.includes("새 채팅")
     );
     if (newChatLink) {
       newChatLink.click();
@@ -60,25 +60,21 @@ export const siteActionRunners = {
   },
 
   youtubePauseVideo: () => {
-    const video = document.querySelector("video");
-    if (video) {
-      video.pause();
-    }
+    const video = document.querySelector<HTMLVideoElement>("video");
+    video?.pause();
   },
   youtubePlayVideo: () => {
-    const video = document.querySelector("video");
-    if (video) {
-      video.play();
-    }
+    const video = document.querySelector<HTMLVideoElement>("video");
+    video?.play();
   },
   youtubeNextVideo: () => {
-    const nextButton = document.querySelector(".ytp-next-button");
-    if (nextButton) {
-      nextButton.click();
-    }
+    const nextButton =
+      document.querySelector<HTMLButtonElement>(".ytp-next-button");
+    nextButton?.click();
   },
   youtubePrevVideo: () => {
-    const prevButton = document.querySelector(".ytp-prev-button");
+    const prevButton =
+      document.querySelector<HTMLButtonElement>(".ytp-prev-button");
     if (prevButton && prevButton.getAttribute("aria-disabled") !== "true") {
       prevButton.click();
     }
