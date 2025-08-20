@@ -5,6 +5,8 @@ import HeaderLayout from "@/components/common/HeaderLayout";
 import PatternForm from "@/components/pattern/PatternForm";
 import useAlert from "@/hooks/useAlert";
 import { saveUserMapping } from "@/services/mappingService";
+import { Gesture } from "@/types/gesture";
+import { Mapping, MappingWithPoints } from "@/types/mapping";
 import selectGestureStore from "@/utils/gesture/selectGestureStore";
 import selectMappingStore from "@/utils/mapping/selectMappingStore";
 
@@ -16,17 +18,17 @@ const AddPattern = () => {
     window.close();
   };
 
-  const handleSubmit = async (mapping) => {
+  const handleSubmit = async (mapping: Mapping) => {
     try {
       const { store: gestureStore } = await selectGestureStore();
       const { store: mappingStore, userEmail } = await selectMappingStore();
 
-      const allGestures = await gestureStore.getAll();
+      const allGestures: Gesture[] = await gestureStore.getAll();
       const matchedGestureData = allGestures.find(
         (gesture) => gesture.name === mapping.gesture
       );
 
-      const mappingWithPoints = {
+      const mappingWithPoints: MappingWithPoints = {
         ...mapping,
         points: matchedGestureData?.points || [],
         createdAt: new Date().toISOString(),

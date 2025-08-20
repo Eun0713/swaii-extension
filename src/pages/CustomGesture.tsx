@@ -8,15 +8,16 @@ import GestureCanvas from "@/components/gesture/GestureCanvas";
 import GestureInput from "@/components/gesture/GestureInput";
 import useAlert from "@/hooks/useAlert";
 import { saveUserGesture } from "@/services/gestureService";
+import { Point } from "@/types/gesture";
 import selectGestureStore from "@/utils/gesture/selectGestureStore";
 
 const CustomGesture = () => {
   const navigate = useNavigate();
-  const [name, setName] = useState("");
-  const [path, setPath] = useState([]);
+  const [name, setName] = useState<string>("");
+  const [path, setPath] = useState<Point[]>([]);
   const { alert, showAlert } = useAlert();
 
-  const validateGestureInput = (name, path) => {
+  const validateGestureInput = (name: string, path: Point[]): string | null => {
     if (!name.trim()) {
       return "제스처 이름을 입력해주세요.";
     }
@@ -28,7 +29,7 @@ const CustomGesture = () => {
     return null;
   };
 
-  const handleSave = async () => {
+  const handleSave = async (): Promise<void> => {
     const errorMessage = validateGestureInput(name, path);
     if (errorMessage) {
       showAlert(errorMessage, "error");
@@ -37,7 +38,7 @@ const CustomGesture = () => {
 
     const gestureData = {
       name,
-      type: "custom",
+      type: "custom" as const,
       points: path,
     };
 

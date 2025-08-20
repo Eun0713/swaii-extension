@@ -6,4 +6,7 @@ export interface Mapping {
   action: string;
 }
 
-export type MappingWithPoints = Mapping & { points: Point[] };
+export type MappingWithPoints = Mapping & {
+  points: Point[];
+  createdAt: string;
+};

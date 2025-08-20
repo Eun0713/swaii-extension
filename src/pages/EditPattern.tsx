@@ -6,13 +6,15 @@ import HeaderLayout from "@/components/common/HeaderLayout";
 import PatternForm from "@/components/pattern/PatternForm";
 import useAlert from "@/hooks/useAlert";
 import { updateUserMapping } from "@/services/mappingService";
+import { Gesture } from "@/types/gesture";
+import { Mapping, MappingWithPoints } from "@/types/mapping";
 import selectGestureStore from "@/utils/gesture/selectGestureStore";
 import selectMappingStore from "@/utils/mapping/selectMappingStore";
 
 const EditPattern = () => {
   const navigate = useNavigate();
   const { alert, showAlert } = useAlert();
-  const [initialData, setInitialData] = useState(null);
+  const [initialData, setInitialData] = useState<Mapping | null>(null);
 
   useEffect(() => {
     chrome.storage.local.get("selectedPattern", (result) => {
@@ -29,10 +31,14 @@ const EditPattern = () => {
     navigate(-1);
   };
 
-  const handleSubmit = async (updatedMapping) => {
+  const handleSubmit = async (updatedMapping: Mapping): Promise<void> => {
     try {
       const { store: mappingStore, userEmail } = await selectMappingStore();
       const { store: gestureStore } = await selectGestureStore();
+
+      if (!initialData) {
+        return;
+      }
 
       const mappingChanged =
         initialData.site !== updatedMapping.site ||
@@ -44,14 +50,15 @@ const EditPattern = () => {
         return;
       }
 
-      const allGestures = await gestureStore.getAll();
+      const allGestures: Gesture[] = await gestureStore.getAll();
       const matchedGestureData = allGestures.find(
         (gesture) => gesture.name === updatedMapping.gesture
       );
 
-      const updatedMappingWithPoints = {
+      const updatedMappingWithPoints: MappingWithPoints = {
         ...updatedMapping,
         points: matchedGestureData?.points || [],
+        createdAt: new Date().toISOString(),
       };
 
       if (userEmail) {
