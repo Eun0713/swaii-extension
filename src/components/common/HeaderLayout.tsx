@@ -6,6 +6,7 @@ interface HeaderLayoutProps {
   title: string;
   description: string;
   children: ReactNode;
+  onClose?: () => void;
 }
 
 const HeaderLayout = ({ title, description, children }: HeaderLayoutProps) => {
