@@ -1,6 +1,9 @@
 <div align="center">
-  <img width="360" height="360" alt="Swaii Logo" src="https://github.com/user-attachments/assets/5a3b75f7-8c7c-43b2-bae6-121ce14e7e02"/>
-
+<img
+  src="https://github.com/user-attachments/assets/5a3b75f7-8c7c-43b2-bae6-121ce14e7e02"
+  alt="Swaii Logo"
+  style="width:360px; height:auto;"
+/>
   <p>
     <strong>사이트마다 다른 단축키, 외우기 불편하지 않나요?</strong><br>
     <strong>Swaii</strong>는 웹 브라우저에서 마우스 제스처로 반복 작업을 빠르게 실행할 수 있는 Chrome 확장 프로그램입니다.<br>
